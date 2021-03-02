@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "w3VuV5l+qysmUetA46I2FDPy6S7JDV9TDUFcDxn+3BdRkXRN+nD7Psn34PMXEvx2jB7BKO/0bi5oi69oSNAniw==",
+  "dgSpecHash": "raeRLIMeepTfuy7wfCDpQhZNhDlTIoHtgdOa44/0AsgHBFqpM5GUXL9KOgfQ3HouEZs/T8itnOiRvCUXy9ue9A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\STEFAN PC\\Source\\Repos\\Flashcards_back\\REST\\REST.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\neven\\source\\repos\\Flashcards_back\\REST\\REST.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\neven\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\neven\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512"
+  ],
   "logs": []
 }
