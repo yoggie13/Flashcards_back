@@ -26,7 +26,7 @@ namespace REST.Controllers
             switch (str)
             {
                 case "dashboard":
-                    return Ok("Hello");
+                    return Ok("Dashboard");
                 default:
                     return NotFound("Nema");
             }
