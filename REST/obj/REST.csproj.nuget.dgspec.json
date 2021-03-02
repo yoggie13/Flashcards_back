@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ognjen\\source\\repos\\Flashcards\\REST\\REST.csproj": {}
+    "C:\\Users\\STEFAN PC\\Source\\Repos\\Flashcards_back\\REST\\REST.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ognjen\\source\\repos\\Flashcards\\REST\\REST.csproj": {
+    "C:\\Users\\STEFAN PC\\Source\\Repos\\Flashcards_back\\REST\\REST.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ognjen\\source\\repos\\Flashcards\\REST\\REST.csproj",
+        "projectUniqueName": "C:\\Users\\STEFAN PC\\Source\\Repos\\Flashcards_back\\REST\\REST.csproj",
         "projectName": "REST",
-        "projectPath": "C:\\Users\\Ognjen\\source\\repos\\Flashcards\\REST\\REST.csproj",
-        "packagesPath": "C:\\Users\\Ognjen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ognjen\\source\\repos\\Flashcards\\REST\\obj\\",
+        "projectPath": "C:\\Users\\STEFAN PC\\Source\\Repos\\Flashcards_back\\REST\\REST.csproj",
+        "packagesPath": "C:\\Users\\STEFAN PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\STEFAN PC\\Source\\Repos\\Flashcards_back\\REST\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Ognjen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\STEFAN PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -57,7 +57,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
