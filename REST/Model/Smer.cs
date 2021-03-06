@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 
 namespace REST.Model
 {
-    public class Smer
+    public enum Smer
     {
+        ISIT,
+        MIO,
+        Oba
     }
 }

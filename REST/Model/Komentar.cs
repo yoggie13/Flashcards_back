@@ -7,5 +7,9 @@ namespace REST.Model
 {
     public class Komentar
     {
+        public int KomentarID { get; set; }
+        public Korisnik KorisnikID { get; set; }
+        public SkupKartica SkupKarticaID { get; set; }
+        public string Tekst { get; set; }
     }
 }

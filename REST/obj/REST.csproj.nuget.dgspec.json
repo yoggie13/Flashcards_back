@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\neven\\source\\repos\\Flashcards_back\\REST\\REST.csproj": {}
+    "C:\\Users\\neven\\Desktop\\ITEH seminarski\\Flashcards_back\\REST\\REST.csproj": {}
   },
   "projects": {
-    "C:\\Users\\neven\\source\\repos\\Flashcards_back\\REST\\REST.csproj": {
+    "C:\\Users\\neven\\Desktop\\ITEH seminarski\\Flashcards_back\\REST\\REST.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\neven\\source\\repos\\Flashcards_back\\REST\\REST.csproj",
+        "projectUniqueName": "C:\\Users\\neven\\Desktop\\ITEH seminarski\\Flashcards_back\\REST\\REST.csproj",
         "projectName": "REST",
-        "projectPath": "C:\\Users\\neven\\source\\repos\\Flashcards_back\\REST\\REST.csproj",
+        "projectPath": "C:\\Users\\neven\\Desktop\\ITEH seminarski\\Flashcards_back\\REST\\REST.csproj",
         "packagesPath": "C:\\Users\\neven\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\neven\\source\\repos\\Flashcards_back\\REST\\obj\\",
+        "outputPath": "C:\\Users\\neven\\Desktop\\ITEH seminarski\\Flashcards_back\\REST\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

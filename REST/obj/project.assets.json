@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\neven\\Source\\Repos\\Flashcards_back\\REST\\REST.csproj",
+      "projectUniqueName": "C:\\Users\\neven\\Desktop\\ITEH seminarski\\Flashcards_back\\REST\\REST.csproj",
       "projectName": "REST",
-      "projectPath": "C:\\Users\\neven\\Source\\Repos\\Flashcards_back\\REST\\REST.csproj",
+      "projectPath": "C:\\Users\\neven\\Desktop\\ITEH seminarski\\Flashcards_back\\REST\\REST.csproj",
       "packagesPath": "C:\\Users\\neven\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\neven\\Source\\Repos\\Flashcards_back\\REST\\obj\\",
+      "outputPath": "C:\\Users\\neven\\Desktop\\ITEH seminarski\\Flashcards_back\\REST\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
