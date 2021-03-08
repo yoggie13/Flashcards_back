@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using REST.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace REST.Controllers
         }
 
         [HttpGet("/{str}")]
-        public ActionResult<IEnumerable<IGenericRepository>> Get(string str)
+        public ActionResult<IEnumerable<Object>> Get(string str)
         {
             switch (str)
             {
@@ -33,7 +34,7 @@ namespace REST.Controllers
         }
   
         [HttpGet("/{str}/{id}")]
-        public ActionResult<IEnumerable<IGenericRepository>> GetByID(string str, int id)
+        public ActionResult<IEnumerable<Object>> GetByID(string str, int id)
         {
             switch (str)
             {
@@ -52,78 +53,79 @@ namespace REST.Controllers
                             return NotFound("Nema");
                     }
                 case "predmeti":
-                    return Ok("List of decks");
+                    return Ok(new List<SkupKartica>());
                 case "profil":
-                    return Ok("Profile");
+                    return Ok(new Korisnik());
                 default:
                     return NotFound("Nema");
             }
         }
         [HttpGet("/{str}/{firstID}/{secondID}")]
-        public ActionResult<IEnumerable<IGenericRepository>> GetByIDByID(string str, int firstID, int secondID)
+        public ActionResult<IEnumerable<Object>> GetByIDByID(string str, int firstID, int secondID)
         {
             switch (str)
             {
        
                 case "predmeti":
-                    return Ok("Deck of cards");
+                    return Ok(new SkupKartica());
+
                 default:
                     return NotFound("Greška");
             }
         }
         [HttpPost("/{str}/{id}")]
-        public ActionResult<IEnumerable<IGenericRepository>> Post(string str, int id)
+        public ActionResult<IEnumerable<bool>> Post(string str, int id)
         {
             switch (str)
             {
                 case "predmeti":
-                    return Ok("Updated list of decks");
+                    return Ok(true);
                 case "profil":
-                    return Ok("Updated profile");
+                    return Ok(true);
                 default:
-                    return NotFound("Nema");
+                    return NotFound(false);
             }
         }
         [HttpPost("/{str}/{firstID}/{secondID}")]
-        public ActionResult<IEnumerable<IGenericRepository>> PostByIDByID(string str, int firstID, int secondID)
+        public ActionResult<IEnumerable<bool>> PostByIDByID(string str, int firstID, int secondID)
         {
             switch (str)
             {
                 case "predmeti":
-                    return Ok("Updated deck of cards");
+                    return Ok(true);
                 case "like":
-                    return Ok("Liked!");
+                    return Ok(true);
                 case "comment":
-                    return Ok("Commented");
+                    return Ok(true);
                 default:
-                    return NotFound("Greška");
+                    return NotFound(false);
             }
         }
         [HttpDelete("/{str}/{id}")]
-        public ActionResult<IEnumerable<IGenericRepository>> Delete(string str, int id)
+        public ActionResult<IEnumerable<bool>> Delete(string str, int id)
         {
             switch (str)
             {
                 case "predmeti":
-                    return Ok("Deleted subject");
+                    return Ok(true);
                 //case "profil":
                 //    return Ok("Deleted profile");
                 default:
-                    return NotFound("Nema");
+                    return NotFound(false);
             }
         }
 
         [HttpDelete("/{str}/{firstID}/{secondID}")]
-        public ActionResult<IEnumerable<IGenericRepository>> DeleteByIDByID(string str, int firstID, int secondID)
+        public ActionResult<IEnumerable<bool>> DeleteByIDByID(string str, int firstID, int secondID)
         {
             switch (str)
             {
                 case "predmeti":
-                    return Ok("Deleted deck of cards");
+                    return Ok(true);
                 case "like":
-                    return Ok("Unliked!");
+                    return Ok(true);
                 default:
-                    return NotFound("Greška");
+                    return NotFound(false);
             }
         }
     }

@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 
 namespace REST.Model
 {
-    public class Komentar
+    public class Komentar : IGenericRepository
     {
         public int KomentarID { get; set; }
         public Korisnik KorisnikID { get; set; }
         public SkupKartica SkupKarticaID { get; set; }
         public string Tekst { get; set; }
+
     }
 }

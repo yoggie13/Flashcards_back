@@ -11,5 +11,6 @@ namespace REST.Model
         public SkupKartica SkupKarticaID { get; set; }
         public string TekstFront { get; set; }
         public string TekstBack { get; set; }
+
     }
 }
