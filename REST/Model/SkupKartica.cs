@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace REST.Model
 {
-    public class SkupKartica : IGenericRepository
+    public class SkupKartica 
     {
         public int SkupKarticaID { get; set; }
         public string Naziv { get; set; }
