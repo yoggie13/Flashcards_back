@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace REST.Model
 {
-    public enum Uloga
+    public enum Role
     {
         Administrator,
         Korisnik

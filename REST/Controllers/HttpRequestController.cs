@@ -53,9 +53,9 @@ namespace REST.Controllers
                             return NotFound("Nema");
                     }
                 case "predmeti":
-                    return Ok(new List<SkupKartica>());
+                    return Ok(new List<DeckOfCards>());
                 case "profil":
-                    return Ok(new Korisnik());
+                    return Ok(new User());
                 default:
                     return NotFound("Nema");
             }
@@ -67,7 +67,7 @@ namespace REST.Controllers
             {
        
                 case "predmeti":
-                    return Ok(new SkupKartica());
+                    return Ok(new DeckOfCards());
 
                 default:
                     return NotFound("Greška");

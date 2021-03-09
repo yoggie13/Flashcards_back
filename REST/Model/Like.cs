@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace REST.Model
 {
-    public enum Smer
+    public class Like
     {
-        ISIT,
-        MIO,
-        Oba
+        public User UserID { get; set; }
+        public DeckOfCards DeckOfCardsID { get; set; }
     }
 }
