@@ -16,7 +16,8 @@ namespace REST.Model
         public User UserID { get; set; }
         [Required]
         public Subject SubjectID { get; set; }
+        public List<Card> Cards { get; set; }
 
-       
+
     }
 }
