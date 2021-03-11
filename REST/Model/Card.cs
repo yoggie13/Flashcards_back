@@ -12,8 +12,7 @@ namespace REST.Model
         [Key, Column(Order = 1)]
         public int CardID { get; set; }
         [Key, Column(Order = 0)]
-        public int DeckOfCardsID { get; set; }
-        public DeckOfCards DeckOfCards { get; set; }
+        public DeckOfCards DeckOfCardsID { get; set; }
         public string TextFront { get; set; }
         public string TextBack { get; set; }
 

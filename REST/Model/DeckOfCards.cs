@@ -12,10 +12,10 @@ namespace REST.Model
         public int DeckOfCardsID { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
-        /*[Required]
+        [Required]
         public User UserID { get; set; }
         [Required]
-        public Subject SubjectID { get; set; }*/
+        public Subject SubjectID { get; set; }
         public List<Card> Cards { get; set; }
 
 
