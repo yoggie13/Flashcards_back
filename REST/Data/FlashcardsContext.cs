@@ -36,7 +36,7 @@ namespace REST.Data
                 .IsUnique(true);
 
 
-            modelBuilder.Entity<Card>().HasKey(c => new { c.DeckOfCards.DeckOfCardsID, c.CardID });
+            modelBuilder.Entity<Card>().HasKey(c => new { c.DeckOfCardsID, c.CardID });
             //modelBuilder.Entity<Comment>().HasKey(c => new { c.DeckOfCardsID, c.UserID, c.CommentID });
             //modelBuilder.Entity<Like>().HasKey(l => new { l.DeckOfCardsID, l.UserID });
             //modelBuilder.Entity<SubComment>().HasKey(s => new { s.CommentID, s.SubCommentID,s.SubCommentedByID });
