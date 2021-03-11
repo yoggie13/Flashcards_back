@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\neven\\Desktop\\Sem\\REST\\REST.csproj": {}
+    "C:\\Users\\neven\\Desktop\\Seminarski ITEH\\Flashcards_back\\REST\\REST.csproj": {}
   },
   "projects": {
-    "C:\\Users\\neven\\Desktop\\Sem\\REST\\REST.csproj": {
+    "C:\\Users\\neven\\Desktop\\Seminarski ITEH\\Flashcards_back\\REST\\REST.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\neven\\Desktop\\Sem\\REST\\REST.csproj",
+        "projectUniqueName": "C:\\Users\\neven\\Desktop\\Seminarski ITEH\\Flashcards_back\\REST\\REST.csproj",
         "projectName": "REST",
-        "projectPath": "C:\\Users\\neven\\Desktop\\Sem\\REST\\REST.csproj",
+        "projectPath": "C:\\Users\\neven\\Desktop\\Seminarski ITEH\\Flashcards_back\\REST\\REST.csproj",
         "packagesPath": "C:\\Users\\neven\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\neven\\Desktop\\Sem\\REST\\obj\\",
+        "outputPath": "C:\\Users\\neven\\Desktop\\Seminarski ITEH\\Flashcards_back\\REST\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -47,17 +47,21 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.3, )"
+              "version": "[5.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[5.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.3, )"
+              "version": "[5.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.3, )"
+              "version": "[5.0.4, )"
             }
           },
           "imports": [

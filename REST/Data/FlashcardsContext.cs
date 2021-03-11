@@ -16,7 +16,7 @@ namespace REST.Data
 
         public DbSet<Card> Cards { get; set; }
         //public DbSet<Comment> Comments { get; set; }
-        //public DbSet<DeckOfCards> DecksOfCards { get; set; }
+        public DbSet<DeckOfCards> DecksOfCards { get; set; }
         //public DbSet<Like> Likes { get; set; }
         //public DbSet<SubComment> SubComments { get; set; }
         public DbSet<Subject> Subjects { get; set; }
@@ -35,10 +35,11 @@ namespace REST.Data
                 .HasIndex(u => u.Username)
                 .IsUnique(true);
 
-            modelBuilder.Entity<Card>().HasKey(c => new { c.DeckOfCardsID, c.CardID });
-            modelBuilder.Entity<Comment>().HasKey(c => new { c.DeckOfCardsID, c.UserID, c.CommentID });
-            modelBuilder.Entity<Like>().HasKey(l => new { l.DeckOfCardsID, l.UserID });
-            modelBuilder.Entity<SubComment>().HasKey(s => new { s.CommentID, s.SubCommentID,s.SubCommentedByID });
+
+            modelBuilder.Entity<Card>().HasKey(c => new { c.DeckOfCards.DeckOfCardsID, c.CardID });
+            //modelBuilder.Entity<Comment>().HasKey(c => new { c.DeckOfCardsID, c.UserID, c.CommentID });
+            //modelBuilder.Entity<Like>().HasKey(l => new { l.DeckOfCardsID, l.UserID });
+            //modelBuilder.Entity<SubComment>().HasKey(s => new { s.CommentID, s.SubCommentID,s.SubCommentedByID });
 
         }
     }
