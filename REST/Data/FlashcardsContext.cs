@@ -42,25 +42,25 @@ namespace REST.Data
              modelBuilder.Entity<Like>().HasKey(l => new { l.DeckOfCardsID, l.UserID });
              modelBuilder.Entity<SubComment>().HasKey(s => new { s.CommentID, s.SubCommentID,s.SubCommentedByID });*/
             modelBuilder.Entity<Card>()
-                .HasOne(c => c.DeckOfCardsID)
+                .HasOne(c => c.DeckOfCards)
                 .WithMany(d => d.Cards);
             modelBuilder.Entity<Comment>()
-                .HasOne(c => c.DeckOfCardsID)
+                .HasOne(c => c.DeckOfCards)
                 .WithMany(d => d.Comments);
             modelBuilder.Entity<Comment>()
-                .HasOne(c => c.UserID)
+                .HasOne(c => c.User)
                 .WithMany(u => u.Comments);
             modelBuilder.Entity<Like>()
-                .HasOne(l => l.UserID)
+                .HasOne(l => l.User)
                 .WithMany(u => u.Likes);
             modelBuilder.Entity<Like>()
-                .HasOne(l => l.DeckOfCardsID)
+                .HasOne(l => l.DeckOfCards)
                 .WithMany(d => d.Likes);
             modelBuilder.Entity<SubComment>()
-                .HasOne(s => s.CommentID)
+                .HasOne(s => s.Comment)
                 .WithMany(c => c.SubComments);
             modelBuilder.Entity<SubComment>()
-                .HasOne(s => s.SubCommentedByID)
+                .HasOne(s => s.SubCommentedBy)
                 .WithMany(u => u.SubComments);
         }
     }

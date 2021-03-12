@@ -13,9 +13,9 @@ namespace REST.Model
         public string Name { get; set; }
         public DateTime Date { get; set; }
         [Required]
-        public User UserID { get; set; }
+        public User User { get; set; }
         [Required]
-        public Subject SubjectID { get; set; }
+        public Subject Subject { get; set; }
         public List<Card> Cards { get; set; }
         public List<Comment> Comments { get; set; }
         public List<Like> Likes { get; set; }

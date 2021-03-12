@@ -11,8 +11,8 @@ namespace REST.Model
     {
         [Key]
         public int SubCommentID { get; set; }
-        public Comment CommentID { get; set; }
+        public Comment Comment { get; set; }
         public string Text { get; set; }
-        public User SubCommentedByID { get; set; }
+        public User SubCommentedBy { get; set; }
     }
 }

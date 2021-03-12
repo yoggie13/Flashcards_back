@@ -26,7 +26,7 @@ namespace REST.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("DeckOfCardsID1")
+                    b.Property<int?>("DeckOfCardsID")
                         .HasColumnType("int");
 
                     b.Property<string>("TextBack")
@@ -37,7 +37,7 @@ namespace REST.Migrations
 
                     b.HasKey("CardID");
 
-                    b.HasIndex("DeckOfCardsID1");
+                    b.HasIndex("DeckOfCardsID");
 
                     b.ToTable("Cards");
                 });
@@ -49,20 +49,20 @@ namespace REST.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("DeckOfCardsID1")
+                    b.Property<int?>("DeckOfCardsID")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserID1")
+                    b.Property<int?>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("CommentID");
 
-                    b.HasIndex("DeckOfCardsID1");
+                    b.HasIndex("DeckOfCardsID");
 
-                    b.HasIndex("UserID1");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Comments");
                 });
@@ -80,17 +80,17 @@ namespace REST.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("SubjectID1")
+                    b.Property<int?>("SubjectID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserID1")
+                    b.Property<int?>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("DeckOfCardsID");
 
-                    b.HasIndex("SubjectID1");
+                    b.HasIndex("SubjectID");
 
-                    b.HasIndex("UserID1");
+                    b.HasIndex("UserID");
 
                     b.ToTable("DecksOfCards");
                 });
@@ -102,17 +102,17 @@ namespace REST.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("DeckOfCardsID1")
+                    b.Property<int?>("DeckOfCardsID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserID1")
+                    b.Property<int?>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("LikeID");
 
-                    b.HasIndex("DeckOfCardsID1");
+                    b.HasIndex("DeckOfCardsID");
 
-                    b.HasIndex("UserID1");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Likes");
                 });
@@ -124,10 +124,10 @@ namespace REST.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CommentID1")
+                    b.Property<int?>("CommentID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SubCommentedByIDUserID")
+                    b.Property<int?>("SubCommentedByUserID")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
@@ -135,9 +135,9 @@ namespace REST.Migrations
 
                     b.HasKey("SubCommentID");
 
-                    b.HasIndex("CommentID1");
+                    b.HasIndex("CommentID");
 
-                    b.HasIndex("SubCommentedByIDUserID");
+                    b.HasIndex("SubCommentedByUserID");
 
                     b.ToTable("SubComments");
                 });
@@ -201,71 +201,71 @@ namespace REST.Migrations
 
             modelBuilder.Entity("REST.Model.Card", b =>
                 {
-                    b.HasOne("REST.Model.DeckOfCards", "DeckOfCardsID")
+                    b.HasOne("REST.Model.DeckOfCards", "DeckOfCards")
                         .WithMany("Cards")
-                        .HasForeignKey("DeckOfCardsID1");
+                        .HasForeignKey("DeckOfCardsID");
 
-                    b.Navigation("DeckOfCardsID");
+                    b.Navigation("DeckOfCards");
                 });
 
             modelBuilder.Entity("REST.Model.Comment", b =>
                 {
-                    b.HasOne("REST.Model.DeckOfCards", "DeckOfCardsID")
+                    b.HasOne("REST.Model.DeckOfCards", "DeckOfCards")
                         .WithMany("Comments")
-                        .HasForeignKey("DeckOfCardsID1");
+                        .HasForeignKey("DeckOfCardsID");
 
-                    b.HasOne("REST.Model.User", "UserID")
+                    b.HasOne("REST.Model.User", "User")
                         .WithMany("Comments")
-                        .HasForeignKey("UserID1");
+                        .HasForeignKey("UserID");
 
-                    b.Navigation("DeckOfCardsID");
+                    b.Navigation("DeckOfCards");
 
-                    b.Navigation("UserID");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("REST.Model.DeckOfCards", b =>
                 {
-                    b.HasOne("REST.Model.Subject", "SubjectID")
+                    b.HasOne("REST.Model.Subject", "Subject")
                         .WithMany()
-                        .HasForeignKey("SubjectID1");
+                        .HasForeignKey("SubjectID");
 
-                    b.HasOne("REST.Model.User", "UserID")
+                    b.HasOne("REST.Model.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserID1");
+                        .HasForeignKey("UserID");
 
-                    b.Navigation("SubjectID");
+                    b.Navigation("Subject");
 
-                    b.Navigation("UserID");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("REST.Model.Like", b =>
                 {
-                    b.HasOne("REST.Model.DeckOfCards", "DeckOfCardsID")
+                    b.HasOne("REST.Model.DeckOfCards", "DeckOfCards")
                         .WithMany("Likes")
-                        .HasForeignKey("DeckOfCardsID1");
+                        .HasForeignKey("DeckOfCardsID");
 
-                    b.HasOne("REST.Model.User", "UserID")
+                    b.HasOne("REST.Model.User", "User")
                         .WithMany("Likes")
-                        .HasForeignKey("UserID1");
+                        .HasForeignKey("UserID");
 
-                    b.Navigation("DeckOfCardsID");
+                    b.Navigation("DeckOfCards");
 
-                    b.Navigation("UserID");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("REST.Model.SubComment", b =>
                 {
-                    b.HasOne("REST.Model.Comment", "CommentID")
+                    b.HasOne("REST.Model.Comment", "Comment")
                         .WithMany("SubComments")
-                        .HasForeignKey("CommentID1");
+                        .HasForeignKey("CommentID");
 
-                    b.HasOne("REST.Model.User", "SubCommentedByID")
+                    b.HasOne("REST.Model.User", "SubCommentedBy")
                         .WithMany("SubComments")
-                        .HasForeignKey("SubCommentedByIDUserID");
+                        .HasForeignKey("SubCommentedByUserID");
 
-                    b.Navigation("CommentID");
+                    b.Navigation("Comment");
 
-                    b.Navigation("SubCommentedByID");
+                    b.Navigation("SubCommentedBy");
                 });
 
             modelBuilder.Entity("REST.Model.Comment", b =>

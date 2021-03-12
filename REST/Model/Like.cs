@@ -9,8 +9,8 @@ namespace REST.Model
 {
     public class Like
     {
-        public User UserID { get; set; }
-        public DeckOfCards DeckOfCardsID { get; set; }
+        public User User { get; set; }
+        public DeckOfCards DeckOfCards { get; set; }
         [Key]
         public int LikeID { get; set; }
     }

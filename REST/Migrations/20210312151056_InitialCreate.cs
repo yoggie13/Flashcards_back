@@ -47,21 +47,21 @@ namespace REST.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserID1 = table.Column<int>(type: "int", nullable: true),
-                    SubjectID1 = table.Column<int>(type: "int", nullable: true)
+                    UserID = table.Column<int>(type: "int", nullable: true),
+                    SubjectID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DecksOfCards", x => x.DeckOfCardsID);
                     table.ForeignKey(
-                        name: "FK_DecksOfCards_Subjects_SubjectID1",
-                        column: x => x.SubjectID1,
+                        name: "FK_DecksOfCards_Subjects_SubjectID",
+                        column: x => x.SubjectID,
                         principalTable: "Subjects",
                         principalColumn: "SubjectID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_DecksOfCards_Users_UserID1",
-                        column: x => x.UserID1,
+                        name: "FK_DecksOfCards_Users_UserID",
+                        column: x => x.UserID,
                         principalTable: "Users",
                         principalColumn: "UserID",
                         onDelete: ReferentialAction.Restrict);
@@ -73,7 +73,7 @@ namespace REST.Migrations
                 {
                     CardID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DeckOfCardsID1 = table.Column<int>(type: "int", nullable: true),
+                    DeckOfCardsID = table.Column<int>(type: "int", nullable: true),
                     TextFront = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TextBack = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -81,8 +81,8 @@ namespace REST.Migrations
                 {
                     table.PrimaryKey("PK_Cards", x => x.CardID);
                     table.ForeignKey(
-                        name: "FK_Cards_DecksOfCards_DeckOfCardsID1",
-                        column: x => x.DeckOfCardsID1,
+                        name: "FK_Cards_DecksOfCards_DeckOfCardsID",
+                        column: x => x.DeckOfCardsID,
                         principalTable: "DecksOfCards",
                         principalColumn: "DeckOfCardsID",
                         onDelete: ReferentialAction.Restrict);
@@ -94,22 +94,22 @@ namespace REST.Migrations
                 {
                     CommentID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserID1 = table.Column<int>(type: "int", nullable: true),
-                    DeckOfCardsID1 = table.Column<int>(type: "int", nullable: true),
+                    UserID = table.Column<int>(type: "int", nullable: true),
+                    DeckOfCardsID = table.Column<int>(type: "int", nullable: true),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.CommentID);
                     table.ForeignKey(
-                        name: "FK_Comments_DecksOfCards_DeckOfCardsID1",
-                        column: x => x.DeckOfCardsID1,
+                        name: "FK_Comments_DecksOfCards_DeckOfCardsID",
+                        column: x => x.DeckOfCardsID,
                         principalTable: "DecksOfCards",
                         principalColumn: "DeckOfCardsID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Comments_Users_UserID1",
-                        column: x => x.UserID1,
+                        name: "FK_Comments_Users_UserID",
+                        column: x => x.UserID,
                         principalTable: "Users",
                         principalColumn: "UserID",
                         onDelete: ReferentialAction.Restrict);
@@ -121,21 +121,21 @@ namespace REST.Migrations
                 {
                     LikeID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserID1 = table.Column<int>(type: "int", nullable: true),
-                    DeckOfCardsID1 = table.Column<int>(type: "int", nullable: true)
+                    UserID = table.Column<int>(type: "int", nullable: true),
+                    DeckOfCardsID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Likes", x => x.LikeID);
                     table.ForeignKey(
-                        name: "FK_Likes_DecksOfCards_DeckOfCardsID1",
-                        column: x => x.DeckOfCardsID1,
+                        name: "FK_Likes_DecksOfCards_DeckOfCardsID",
+                        column: x => x.DeckOfCardsID,
                         principalTable: "DecksOfCards",
                         principalColumn: "DeckOfCardsID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Likes_Users_UserID1",
-                        column: x => x.UserID1,
+                        name: "FK_Likes_Users_UserID",
+                        column: x => x.UserID,
                         principalTable: "Users",
                         principalColumn: "UserID",
                         onDelete: ReferentialAction.Restrict);
@@ -147,71 +147,71 @@ namespace REST.Migrations
                 {
                     SubCommentID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CommentID1 = table.Column<int>(type: "int", nullable: true),
+                    CommentID = table.Column<int>(type: "int", nullable: true),
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SubCommentedByIDUserID = table.Column<int>(type: "int", nullable: true)
+                    SubCommentedByUserID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SubComments", x => x.SubCommentID);
                     table.ForeignKey(
-                        name: "FK_SubComments_Comments_CommentID1",
-                        column: x => x.CommentID1,
+                        name: "FK_SubComments_Comments_CommentID",
+                        column: x => x.CommentID,
                         principalTable: "Comments",
                         principalColumn: "CommentID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_SubComments_Users_SubCommentedByIDUserID",
-                        column: x => x.SubCommentedByIDUserID,
+                        name: "FK_SubComments_Users_SubCommentedByUserID",
+                        column: x => x.SubCommentedByUserID,
                         principalTable: "Users",
                         principalColumn: "UserID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cards_DeckOfCardsID1",
+                name: "IX_Cards_DeckOfCardsID",
                 table: "Cards",
-                column: "DeckOfCardsID1");
+                column: "DeckOfCardsID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_DeckOfCardsID1",
+                name: "IX_Comments_DeckOfCardsID",
                 table: "Comments",
-                column: "DeckOfCardsID1");
+                column: "DeckOfCardsID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_UserID1",
+                name: "IX_Comments_UserID",
                 table: "Comments",
-                column: "UserID1");
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DecksOfCards_SubjectID1",
+                name: "IX_DecksOfCards_SubjectID",
                 table: "DecksOfCards",
-                column: "SubjectID1");
+                column: "SubjectID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DecksOfCards_UserID1",
+                name: "IX_DecksOfCards_UserID",
                 table: "DecksOfCards",
-                column: "UserID1");
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Likes_DeckOfCardsID1",
+                name: "IX_Likes_DeckOfCardsID",
                 table: "Likes",
-                column: "DeckOfCardsID1");
+                column: "DeckOfCardsID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Likes_UserID1",
+                name: "IX_Likes_UserID",
                 table: "Likes",
-                column: "UserID1");
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubComments_CommentID1",
+                name: "IX_SubComments_CommentID",
                 table: "SubComments",
-                column: "CommentID1");
+                column: "CommentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubComments_SubCommentedByIDUserID",
+                name: "IX_SubComments_SubCommentedByUserID",
                 table: "SubComments",
-                column: "SubCommentedByIDUserID");
+                column: "SubCommentedByUserID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",
