@@ -9,11 +9,13 @@ namespace REST.Data
 {
     public class FlashcardsContext : DbContext
     {
-        public FlashcardsContext(DbContextOptions
-        <FlashcardsContext> options) : base(options)
-        {
-        }
 
+        private FlashcardsContext(DbContextOptions
+       <FlashcardsContext> options) : base(options)
+        {
+        
+        }
+        public FlashcardsContext() { }
         public DbSet<Card> Cards { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<DeckOfCards> DecksOfCards { get; set; }

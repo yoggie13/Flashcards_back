@@ -29,8 +29,8 @@ namespace REST
         {
             services.AddControllersWithViews();
             services.AddDbContext<FlashcardsContext>
-           (o => o.UseSqlServer(Configuration.
-            GetConnectionString("DefaultConnection")));
+            (o => o.UseSqlServer(Configuration.
+                 GetConnectionString("DefaultConnection")));
 
             services.AddControllers();
         }

@@ -13,12 +13,14 @@ namespace REST.Controllers
     [Route("[controller]")]
     public class HttpRequestController : ControllerBase
     {
-        
+
         private readonly ILogger<HttpRequestController> _logger;
+        private EFCoreController _efccontroller;
 
         public HttpRequestController(ILogger<HttpRequestController> logger)
         {
             _logger = logger;
+            _efccontroller = new EFCoreController();
         }
 
         [HttpGet("/{str}")]
@@ -27,12 +29,12 @@ namespace REST.Controllers
             switch (str)
             {
                 case "dashboard":
-                    return Ok("Welcome");
+                    return Ok(_efccontroller.Select("users"));
                 default:
                     return NotFound("Nema");
             }
         }
-  
+
         [HttpGet("/{str}/{id}")]
         public ActionResult<IEnumerable<Object>> GetByID(string str, int id)
         {
@@ -65,7 +67,7 @@ namespace REST.Controllers
         {
             switch (str)
             {
-       
+
                 case "predmeti":
                     return Ok(new DeckOfCards());
 
