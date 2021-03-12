@@ -17,5 +17,8 @@ namespace REST.Model
         [Required]
         public string Email { get; set; }
         public Role Role { get; set; }
+        public List<Like> Likes { get; set; }
+        public List<Comment> Comments { get; set; }
+        public List<SubComment> SubComments { get; set; }
     }
 }

@@ -9,12 +9,10 @@ namespace REST.Model
 {
     public class SubComment
     {
-        [Key, Column(Order = 1)]
+        [Key]
         public int SubCommentID { get; set; }
-        [Key, Column(Order = 0)]
         public Comment CommentID { get; set; }
         public string Text { get; set; }
-        [Key, Column(Order = 2)]
         public User SubCommentedByID { get; set; }
     }
 }

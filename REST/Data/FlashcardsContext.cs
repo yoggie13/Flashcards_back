@@ -15,16 +15,17 @@ namespace REST.Data
         }
 
         public DbSet<Card> Cards { get; set; }
-        //public DbSet<Comment> Comments { get; set; }
+        public DbSet<Comment> Comments { get; set; }
         public DbSet<DeckOfCards> DecksOfCards { get; set; }
-        //public DbSet<Like> Likes { get; set; }
-        //public DbSet<SubComment> SubComments { get; set; }
+        public DbSet<Like> Likes { get; set; }
+        public DbSet<SubComment> SubComments { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer();
+            optionsBuilder.UseSqlServer("Server = (localdb)\\MSSQLLocalDB; Database = DatabaseITEH; Trusted_Connection = True; " +
+                "MultipleActiveResultSets = true");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -36,11 +37,31 @@ namespace REST.Data
                 .IsUnique(true);
 
 
-            modelBuilder.Entity<Card>().HasKey(c => new { c.DeckOfCardsID, c.CardID });
-            //modelBuilder.Entity<Comment>().HasKey(c => new { c.DeckOfCardsID, c.UserID, c.CommentID });
-            //modelBuilder.Entity<Like>().HasKey(l => new { l.DeckOfCardsID, l.UserID });
-            //modelBuilder.Entity<SubComment>().HasKey(s => new { s.CommentID, s.SubCommentID,s.SubCommentedByID });
-
+            /* modelBuilder.Entity<Card>().HasKey(c => new { c.DeckOfCardsID, c.CardID });
+             modelBuilder.Entity<Comment>().HasKey(c => new { c.DeckOfCardsID, c.UserID, c.CommentID });
+             modelBuilder.Entity<Like>().HasKey(l => new { l.DeckOfCardsID, l.UserID });
+             modelBuilder.Entity<SubComment>().HasKey(s => new { s.CommentID, s.SubCommentID,s.SubCommentedByID });*/
+            modelBuilder.Entity<Card>()
+                .HasOne(c => c.DeckOfCardsID)
+                .WithMany(d => d.Cards);
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.DeckOfCardsID)
+                .WithMany(d => d.Comments);
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.UserID)
+                .WithMany(u => u.Comments);
+            modelBuilder.Entity<Like>()
+                .HasOne(l => l.UserID)
+                .WithMany(u => u.Likes);
+            modelBuilder.Entity<Like>()
+                .HasOne(l => l.DeckOfCardsID)
+                .WithMany(d => d.Likes);
+            modelBuilder.Entity<SubComment>()
+                .HasOne(s => s.CommentID)
+                .WithMany(c => c.SubComments);
+            modelBuilder.Entity<SubComment>()
+                .HasOne(s => s.SubCommentedByID)
+                .WithMany(u => u.SubComments);
         }
     }
 }

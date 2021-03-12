@@ -9,9 +9,8 @@ namespace REST.Model
 {
     public class Card
     {
-        [Key, Column(Order = 1)]
+        [Key]
         public int CardID { get; set; }
-        [Key, Column(Order = 0)]
         public DeckOfCards DeckOfCardsID { get; set; }
         public string TextFront { get; set; }
         public string TextBack { get; set; }
