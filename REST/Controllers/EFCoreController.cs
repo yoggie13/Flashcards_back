@@ -1,4 +1,5 @@
-﻿using REST.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using REST.Data;
 using REST.Model;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace REST.Controllers
                 return false;
 
             }
-            finally { _fscontext.Dispose(); }
+            finally { }
             return true;
         }
         public bool Update(Object o)
@@ -39,7 +40,10 @@ namespace REST.Controllers
         }
         public Object Select(string str)
         {
-            var users = _fscontext.Users;
+            var users = _fscontext.DecksOfCards
+                .Include(deck => deck.Cards)
+                .Include(deck => deck.User)
+                .ToList();
             return users;
         }
     }

@@ -29,7 +29,42 @@ namespace REST.Controllers
             switch (str)
             {
                 case "dashboard":
-                    return Ok(_efccontroller.Select("users"));
+                    //Subject s = new Subject() { 
+                    //Name = "probni predmet",
+                    //Department = Department.ISIT,
+                    //Semester = 1,
+                    //Year = 1
+                    //};
+                    //_efccontroller.Add(s);
+                    //User u = new User()
+                    //{
+                    //    Username = "nens",
+                    //    Email = "nena@fon.bg.ac.rs",
+                    //    Password = "nena123",
+                    //    Role = Role.Administrator
+                    //};
+                    //_efccontroller.Add(u);
+                    //_efccontroller.Add(new DeckOfCards()
+                    //{
+                    //    Name = "proba",
+                    //    Date = DateTime.Now,
+                    //    Subject = s,
+                    //    User = u,
+                    //    Cards = new List<Card>()
+                    //    {
+                    //        new Card()
+                    //        {
+                    //            TextFront = "proba1",
+                    //            TextBack = "proba1pozadi"
+                    //        },
+                    //        new Card()
+                    //        {
+                    //            TextFront = "proba2",
+                    //            TextBack = "proba2pozadi"
+                    //        }
+                    //    }
+                    //});
+                    return Ok(_efccontroller.Select("deck"));
                 default:
                     return NotFound("Nema");
             }
