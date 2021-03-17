@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using REST.Model;
 using System;
 using System.Collections.Generic;
@@ -64,14 +66,17 @@ namespace REST.Controllers
             }
         }
         [HttpPost("/{str}/{id}")]
-        public ActionResult<IEnumerable<bool>> Post(string str, int id)
+        public ActionResult<IEnumerable<bool>> Post(string str, int id, object o)
         {
             switch (str)
             {
                 case "predmeti":
-                  
-                    return (Ok("Ovo treba srediti"));
-
+                    return (Ok(_repository.Add(new Subject { SubjectID = id})));
+                case "kartice":
+                    return (Ok(_repository.Add(new DeckOfCards { DeckOfCardsID = id })));
+                case "korisnici":
+                    User u = JsonConvert.DeserializeObject<User>(o.ToString());
+                    return (Ok(_repository.Add(u)));
                 default:
                     return NotFound(false);
             }

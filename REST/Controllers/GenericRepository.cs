@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using REST.Data;
 using REST.Model;
 using System;
@@ -17,8 +18,17 @@ namespace REST.Controllers
         {
             try
             {
-                _fscontext.Add(o);
-                _fscontext.SaveChanges();
+                switch (o)
+                {
+                    case User u:
+                        _fscontext.Add(o);
+                        _fscontext.SaveChanges();
+                        return true;
+                    default:
+                        break;
+                }
+                /*_fscontext.Add(o);
+                _fscontext.SaveChanges();*/
             }
             catch (Exception)
             {
