@@ -13,7 +13,6 @@ namespace REST.Model
         [Required]
         public string Username { get; set; }
         [Required]
-
         private string Password { get; set; }
         [Required]
         public string Email { get; set; }

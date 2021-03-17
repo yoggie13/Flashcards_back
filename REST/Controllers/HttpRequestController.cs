@@ -29,42 +29,7 @@ namespace REST.Controllers
             switch (str)
             {
                 case "dashboard":
-                    //Subject s = new Subject() { 
-                    //Name = "probni predmet",
-                    //Department = Department.ISIT,
-                    //Semester = 1,
-                    //Year = 1
-                    //};
-                    //_efccontroller.Add(s);
-                    //User u = new User()
-                    //{
-                    //    Username = "nens",
-                    //    Email = "nena@fon.bg.ac.rs",
-                    //    Password = "nena123",
-                    //    Role = Role.Administrator
-                    //};
-                    //_efccontroller.Add(u);
-                    //_efccontroller.Add(new DeckOfCards()
-                    //{
-                    //    Name = "proba",
-                    //    Date = DateTime.Now,
-                    //    Subject = s,
-                    //    User = u,
-                    //    Cards = new List<Card>()
-                    //    {
-                    //        new Card()
-                    //        {
-                    //            TextFront = "proba1",
-                    //            TextBack = "proba1pozadi"
-                    //        },
-                    //        new Card()
-                    //        {
-                    //            TextFront = "proba2",
-                    //            TextBack = "proba2pozadi"
-                    //        }
-                    //    }
-                    //});
-                    return Ok(_efccontroller.Select("deck"));
+                    //kad se vraca vise razlicitih json-a mozemo ih spojiti preko jsonresult[], pa onda je svaki new jsonresult()
                 default:
                     return NotFound("Nema");
             }
@@ -90,7 +55,7 @@ namespace REST.Controllers
                             return NotFound("Nema");
                     }
                 case "predmeti":
-                    return Ok(new List<DeckOfCards>());
+                    return Ok(_efccontroller.Select(new Subject() { SubjectID = id}));
                 case "profil":
                     return Ok(new User());
                 default:

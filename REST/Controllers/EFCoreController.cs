@@ -21,16 +21,12 @@ namespace REST.Controllers
             }
             catch (Exception)
             {
-
                 return false;
-
             }
-            finally { }
             return true;
         }
         public bool Update(Object o)
         {
-
             return false;
         }
         public bool Delete(Object o)
@@ -38,13 +34,9 @@ namespace REST.Controllers
 
             return false;
         }
-        public Object Select(string str)
+        public Object Select(Object o)
         {
-            var users = _fscontext.DecksOfCards
-                .Include(deck => deck.Cards)
-                .Include(deck => deck.User)
-                .ToList();
-            return users;
+            return null;
         }
     }
 }
