@@ -15,12 +15,12 @@ namespace REST.Controllers
     {
 
         private readonly ILogger<HttpRequestController> _logger;
-        private EFCoreController _efccontroller;
+        private GenericRepository _repository;
 
         public HttpRequestController(ILogger<HttpRequestController> logger)
         {
             _logger = logger;
-            _efccontroller = new EFCoreController();
+            _repository = new GenericRepository();
         }
 
         [HttpGet("/{str}")]
@@ -30,6 +30,7 @@ namespace REST.Controllers
             {
                 case "dashboard":
                     //kad se vraca vise razlicitih json-a mozemo ih spojiti preko jsonresult[], pa onda je svaki new jsonresult()
+                    return (Ok("Ovo treba srediti"));
                 default:
                     return NotFound("Nema");
             }
@@ -41,23 +42,11 @@ namespace REST.Controllers
             switch (str)
             {
                 case "godina":
-                    switch (id)
-                    {
-                        case 1:
-                            return Ok("Prva godina");
-                        case 2:
-                            return Ok("Druga godina");
-                        case 3:
-                            return Ok("Treća godina");
-                        case 4:
-                            return Ok("Četvrta godina");
-                        default:
-                            return NotFound("Nema");
-                    }
+                    return Ok(_repository.GetById(new Subject() { Year = id }));
                 case "predmeti":
-                    return Ok(_efccontroller.Select(new Subject() { SubjectID = id}));
+                    return Ok(_repository.GetById(new Subject() { SubjectID = id }));
                 case "profil":
-                    return Ok(new User());
+                    return Ok(_repository.GetById(new User() { UserID = id }));
                 default:
                     return NotFound("Nema");
             }
@@ -67,9 +56,8 @@ namespace REST.Controllers
         {
             switch (str)
             {
-
                 case "predmeti":
-                    return Ok(new DeckOfCards());
+                    return Ok(_repository.GetById(new DeckOfCards() { DeckOfCardsID = secondID }));
 
                 default:
                     return NotFound("Greška");
@@ -81,9 +69,9 @@ namespace REST.Controllers
             switch (str)
             {
                 case "predmeti":
-                    return Ok(true);
-                case "profil":
-                    return Ok(true);
+                  
+                    return (Ok("Ovo treba srediti"));
+
                 default:
                     return NotFound(false);
             }
@@ -93,12 +81,14 @@ namespace REST.Controllers
         {
             switch (str)
             {
-                case "predmeti":
-                    return Ok(true);
                 case "like":
-                    return Ok(true);
+                    
+                    return (Ok("Ovo treba srediti"));
+
                 case "comment":
-                    return Ok(true);
+                 
+                    return (Ok("Ovo treba srediti"));
+
                 default:
                     return NotFound(false);
             }
@@ -108,10 +98,7 @@ namespace REST.Controllers
         {
             switch (str)
             {
-                case "predmeti":
-                    return Ok(true);
-                //case "profil":
-                //    return Ok("Deleted profile");
+
                 default:
                     return NotFound(false);
             }
@@ -123,9 +110,13 @@ namespace REST.Controllers
             switch (str)
             {
                 case "predmeti":
-                    return Ok(true);
+                    return Ok(_repository.Delete(new DeckOfCards() { DeckOfCardsID = secondID }));
                 case "like":
-                    return Ok(true);
+                    return Ok(_repository.Delete(new Like()
+                    {
+                        DeckOfCards = new DeckOfCards() { DeckOfCardsID = firstID },
+                        User = new User() { UserID = secondID }
+                    }));
                 default:
                     return NotFound(false);
             }

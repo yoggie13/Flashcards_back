@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using REST.Controllers;
 using REST.Data;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace REST
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           
+
             services.AddControllersWithViews();
             services.AddDbContext<FlashcardsContext>
             (o => o.UseSqlServer(Configuration.
@@ -36,8 +37,8 @@ namespace REST
 
             services.AddControllers();
             services.AddControllers().AddNewtonsoftJson(options =>
-    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-);
+                                      options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddScoped<IGenericRepository, GenericRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
