@@ -73,18 +73,21 @@ namespace REST.Controllers
             {
                 case "predmeti":
                     return (Ok("Je l ovo treba?"));
-                case "kartice":
+                case "skupKartica":
                     DeckOfCards deckOfCards = JsonConvert.DeserializeObject<DeckOfCards>(o.ToString(), new IsoDateTimeConverter { DateTimeFormat = "dd-MM-yyyy" });
                     return (Ok(_repository.Add(deckOfCards)));
                 case "kartica":
                     Card card = JsonConvert.DeserializeObject<Card>(o.ToString());
                     return (Ok(_repository.Add(card)));
-                case "korisnici":
+                case "korisnik":
                     User user = JsonConvert.DeserializeObject<User>(o.ToString());
                     return (Ok(_repository.Add(user)));
-                case "lajkovi":
+                case "lajk":
                     Like like = JsonConvert.DeserializeObject<Like>(o.ToString());
                     return (Ok(_repository.Add(like)));
+                case "komentar":
+                    Comment comment = JsonConvert.DeserializeObject<Comment>(o.ToString());
+                    return (Ok(_repository.Add(comment)));
                 default:
                     return NotFound(false);
             }
