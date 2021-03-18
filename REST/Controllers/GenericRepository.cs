@@ -27,42 +27,33 @@ namespace REST.Controllers
                     case DeckOfCards d:
                         d.Subject = _fscontext.Subjects.Single(x => x.SubjectID == d.Subject.SubjectID);
                         d.User = _fscontext.Users.Single(x => x.UserID == d.User.UserID);
-                       /* d.User = user;
-                        d.Subject = subject;*/
 
                         _fscontext.Add(d);
                         _fscontext.SaveChanges();
                         return true;
                     case Card c:
-                        DeckOfCards deckOfCards = _fscontext.DecksOfCards.Single(x => x.DeckOfCardsID == c.DeckOfCards.DeckOfCardsID);
-                        c.DeckOfCards = deckOfCards;
+                        c.DeckOfCards = _fscontext.DecksOfCards.Single(x => x.DeckOfCardsID == c.DeckOfCards.DeckOfCardsID);
 
                         _fscontext.Add(c);
                         _fscontext.SaveChanges();
                         return true;
                     case Like l:
-                        User user1 = _fscontext.Users.Single(x => x.UserID == l.User.UserID);
-                        DeckOfCards deckOfCards1 = _fscontext.DecksOfCards.Single(x => x.DeckOfCardsID == l.DeckOfCards.DeckOfCardsID);
-                        l.User = user1;
-                        l.DeckOfCards = deckOfCards1;
+                        l.User = _fscontext.Users.Single(x => x.UserID == l.User.UserID);
+                        l.DeckOfCards = _fscontext.DecksOfCards.Single(x => x.DeckOfCardsID == l.DeckOfCards.DeckOfCardsID);
 
                         _fscontext.Add(l);
                         _fscontext.SaveChanges();
                         return true;
                     case Comment c:
-                        User user2 = _fscontext.Users.Single(x => x.UserID == c.User.UserID);
-                        DeckOfCards deckOfCards2 = _fscontext.DecksOfCards.Single(x => x.DeckOfCardsID == c.DeckOfCards.DeckOfCardsID);
-                        c.User = user2;
-                        c.DeckOfCards = deckOfCards2;
+                        c.User = _fscontext.Users.Single(x => x.UserID == c.User.UserID);
+                        c.DeckOfCards = _fscontext.DecksOfCards.Single(x => x.DeckOfCardsID == c.DeckOfCards.DeckOfCardsID);
 
                         _fscontext.Add(c);
                         _fscontext.SaveChanges();
                         return true;
                     case SubComment s:
-                        Comment comment = _fscontext.Comments.Single(x => x.CommentID == s.Comment.CommentID);
-                        User user3 = _fscontext.Users.Single(x => x.UserID == s.SubCommentedBy.UserID);
-                        s.Comment = comment;
-                        s.SubCommentedBy = user3;
+                        s.Comment = _fscontext.Comments.Single(x => x.CommentID == s.Comment.CommentID);
+                        s.SubCommentedBy = _fscontext.Users.Single(x => x.UserID == s.SubCommentedBy.UserID);
 
                         _fscontext.Add(s);
                         _fscontext.SaveChanges();

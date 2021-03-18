@@ -67,7 +67,7 @@ namespace REST.Controllers
             }
         }
         [HttpPost("/{str}")]
-        public ActionResult<IEnumerable<bool>> Post(string str, int id, object o)
+        public ActionResult<IEnumerable<bool>> Post(string str, object o)
         {
             switch (str)
             {
@@ -82,12 +82,6 @@ namespace REST.Controllers
                 case "korisnik":
                     User user = JsonConvert.DeserializeObject<User>(o.ToString());
                     return (Ok(_repository.Add(user)));
-                case "lajk":
-                    Like like = JsonConvert.DeserializeObject<Like>(o.ToString());
-                    return (Ok(_repository.Add(like)));
-                case "komentar":
-                    Comment comment = JsonConvert.DeserializeObject<Comment>(o.ToString());
-                    return (Ok(_repository.Add(comment)));
                 case "podkomentar":
                     SubComment subComment = JsonConvert.DeserializeObject<SubComment>(o.ToString());
                     return (Ok(_repository.Add(subComment)));
@@ -96,18 +90,28 @@ namespace REST.Controllers
             }
         }
         [HttpPost("/{str}/{firstID}/{secondID}")]
-        public ActionResult<IEnumerable<bool>> PostByIDByID(string str, int firstID, int secondID)
+        public ActionResult<IEnumerable<bool>> PostByIDByID(string str, int firstID, int secondID, object o)
         {
             switch (str)
             {
                 case "like":
-                    
-                    return (Ok("Ovo treba srediti"));
-
+                    Like like = new Like
+                    {
+                        User = new User { UserID = firstID },
+                        DeckOfCards = new DeckOfCards { DeckOfCardsID = secondID }
+                    };
+                    return (Ok(_repository.Add(like)));
                 case "comment":
-                 
-                    return (Ok("Ovo treba srediti"));
-
+                    Comment comment = JsonConvert.DeserializeObject<Comment>(o.ToString());
+                    comment.User = new User
+                    {
+                        UserID = firstID
+                    };
+                    comment.DeckOfCards = new DeckOfCards
+                    {
+                        DeckOfCardsID = secondID
+                    };
+                    return (Ok(_repository.Add(comment)));
                 default:
                     return NotFound(false);
             }
