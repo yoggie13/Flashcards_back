@@ -71,10 +71,25 @@ namespace REST.Controllers
         {
             try
             {
-                _fscontext.Update(o);
-                _fscontext.SaveChanges();
+                switch (o)
+                {
+                    case User u:
+                        User userDatabase = _fscontext.Users.Where(x => x.UserID == u.UserID).FirstOrDefault<User>();
 
-                return true;
+                        if (userDatabase != null)
+                        {
+                            userDatabase.Username = u.Username;
+                            userDatabase.Email = u.Email;
+                            userDatabase.Role = u.Role;
+
+                            _fscontext.Update(userDatabase);
+                            _fscontext.SaveChanges();
+                            return true;
+                        }
+                        return false;
+                    default:
+                        return false;
+                }
             }
             catch (Exception)
             {

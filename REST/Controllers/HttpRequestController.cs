@@ -71,8 +71,6 @@ namespace REST.Controllers
         {
             switch (str)
             {
-                case "predmeti":
-                    return (Ok("Je l ovo treba?"));
                 case "skupKartica":
                     DeckOfCards deckOfCards = JsonConvert.DeserializeObject<DeckOfCards>(o.ToString(), new IsoDateTimeConverter { DateTimeFormat = "dd-MM-yyyy" });
                     return (Ok(_repository.Add(deckOfCards)));
@@ -94,6 +92,7 @@ namespace REST.Controllers
         {
             switch (str)
             {
+                //razmisliti da li saljemo kroz body ili ovako
                 case "like":
                     Like like = new Like
                     {
@@ -140,6 +139,21 @@ namespace REST.Controllers
                         DeckOfCards = new DeckOfCards() { DeckOfCardsID = firstID },
                         User = new User() { UserID = secondID }
                     }));
+                default:
+                    return NotFound(false);
+            }
+        }
+
+        [HttpPut("/{str}")]
+        public ActionResult<IEnumerable<bool>> Update(string str, object o)
+        {
+            switch (str)
+            {
+                case "profil":
+                    User user = JsonConvert.DeserializeObject<User>(o.ToString());
+                    return (Ok(_repository.Update(user)));
+                case "like":
+                    
                 default:
                     return NotFound(false);
             }
