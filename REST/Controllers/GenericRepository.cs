@@ -25,13 +25,21 @@ namespace REST.Controllers
                         _fscontext.SaveChanges();
                         return true;
                     case DeckOfCards d:
-
                         var subject = _fscontext.Subjects.Single(x => x.SubjectID == d.Subject.SubjectID);
                         var user = _fscontext.Users.Single(x => x.UserID == d.User.UserID);
                         d.User = user;
                         d.Subject = subject;
 
                         _fscontext.Add(d);
+                        _fscontext.SaveChanges();
+                        return true;
+                    case Like l:
+                        var user1 = _fscontext.Users.Single(x => x.UserID == l.User.UserID);
+                        var deckOfCards = _fscontext.DecksOfCards.Single(x => x.DeckOfCardsID == l.DeckOfCards.DeckOfCardsID);
+                        l.User = user1;
+                        l.DeckOfCards = deckOfCards;
+
+                        _fscontext.Add(l);
                         _fscontext.SaveChanges();
                         return true;
                     default:

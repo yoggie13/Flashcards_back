@@ -79,6 +79,9 @@ namespace REST.Controllers
                 case "korisnici":
                     User user = JsonConvert.DeserializeObject<User>(o.ToString());
                     return (Ok(_repository.Add(user)));
+                case "lajkovi":
+                    Like like = JsonConvert.DeserializeObject<Like>(o.ToString());
+                    return (Ok(_repository.Add(like)));
                 default:
                     return NotFound(false);
             }
