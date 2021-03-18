@@ -88,6 +88,9 @@ namespace REST.Controllers
                 case "komentar":
                     Comment comment = JsonConvert.DeserializeObject<Comment>(o.ToString());
                     return (Ok(_repository.Add(comment)));
+                case "podkomentar":
+                    SubComment subComment = JsonConvert.DeserializeObject<SubComment>(o.ToString());
+                    return (Ok(_repository.Add(subComment)));
                 default:
                     return NotFound(false);
             }

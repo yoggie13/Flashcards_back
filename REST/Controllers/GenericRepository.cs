@@ -58,6 +58,15 @@ namespace REST.Controllers
                         _fscontext.Add(c);
                         _fscontext.SaveChanges();
                         return true;
+                    case SubComment s:
+                        var comment = _fscontext.Comments.Single(x => x.CommentID == s.Comment.CommentID);
+                        var user3 = _fscontext.Users.Single(x => x.UserID == s.SubCommentedBy.UserID);
+                        s.Comment = comment;
+                        s.SubCommentedBy = user3;
+
+                        _fscontext.Add(s);
+                        _fscontext.SaveChanges();
+                        return true;
                     default:
                         break;
                 }
