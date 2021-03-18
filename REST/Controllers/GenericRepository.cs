@@ -25,33 +25,33 @@ namespace REST.Controllers
                         _fscontext.SaveChanges();
                         return true;
                     case DeckOfCards d:
-                        var subject = _fscontext.Subjects.Single(x => x.SubjectID == d.Subject.SubjectID);
-                        var user = _fscontext.Users.Single(x => x.UserID == d.User.UserID);
-                        d.User = user;
-                        d.Subject = subject;
+                        d.Subject = _fscontext.Subjects.Single(x => x.SubjectID == d.Subject.SubjectID);
+                        d.User = _fscontext.Users.Single(x => x.UserID == d.User.UserID);
+                       /* d.User = user;
+                        d.Subject = subject;*/
 
                         _fscontext.Add(d);
                         _fscontext.SaveChanges();
                         return true;
                     case Card c:
-                        var deckOfCards1 = _fscontext.DecksOfCards.Single(x => x.DeckOfCardsID == c.DeckOfCards.DeckOfCardsID);
-                        c.DeckOfCards = deckOfCards1;
+                        DeckOfCards deckOfCards = _fscontext.DecksOfCards.Single(x => x.DeckOfCardsID == c.DeckOfCards.DeckOfCardsID);
+                        c.DeckOfCards = deckOfCards;
 
                         _fscontext.Add(c);
                         _fscontext.SaveChanges();
                         return true;
                     case Like l:
-                        var user1 = _fscontext.Users.Single(x => x.UserID == l.User.UserID);
-                        var deckOfCards = _fscontext.DecksOfCards.Single(x => x.DeckOfCardsID == l.DeckOfCards.DeckOfCardsID);
+                        User user1 = _fscontext.Users.Single(x => x.UserID == l.User.UserID);
+                        DeckOfCards deckOfCards1 = _fscontext.DecksOfCards.Single(x => x.DeckOfCardsID == l.DeckOfCards.DeckOfCardsID);
                         l.User = user1;
-                        l.DeckOfCards = deckOfCards;
+                        l.DeckOfCards = deckOfCards1;
 
                         _fscontext.Add(l);
                         _fscontext.SaveChanges();
                         return true;
                     case Comment c:
-                        var user2 = _fscontext.Users.Single(x => x.UserID == c.User.UserID);
-                        var deckOfCards2 = _fscontext.DecksOfCards.Single(x => x.DeckOfCardsID == c.DeckOfCards.DeckOfCardsID);
+                        User user2 = _fscontext.Users.Single(x => x.UserID == c.User.UserID);
+                        DeckOfCards deckOfCards2 = _fscontext.DecksOfCards.Single(x => x.DeckOfCardsID == c.DeckOfCards.DeckOfCardsID);
                         c.User = user2;
                         c.DeckOfCards = deckOfCards2;
 
@@ -59,8 +59,8 @@ namespace REST.Controllers
                         _fscontext.SaveChanges();
                         return true;
                     case SubComment s:
-                        var comment = _fscontext.Comments.Single(x => x.CommentID == s.Comment.CommentID);
-                        var user3 = _fscontext.Users.Single(x => x.UserID == s.SubCommentedBy.UserID);
+                        Comment comment = _fscontext.Comments.Single(x => x.CommentID == s.Comment.CommentID);
+                        User user3 = _fscontext.Users.Single(x => x.UserID == s.SubCommentedBy.UserID);
                         s.Comment = comment;
                         s.SubCommentedBy = user3;
 
@@ -68,16 +68,13 @@ namespace REST.Controllers
                         _fscontext.SaveChanges();
                         return true;
                     default:
-                        break;
+                        return false;
                 }
-                /*_fscontext.Add(o);
-                _fscontext.SaveChanges();*/
             }
             catch (Exception)
             {
                 return false;
             }
-            return true;
         }
         public bool Update(Object o)
         {

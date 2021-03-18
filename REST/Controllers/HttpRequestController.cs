@@ -66,7 +66,7 @@ namespace REST.Controllers
                     return NotFound("Greška");
             }
         }
-        [HttpPost("/{str}/{id}")]
+        [HttpPost("/{str}")]
         public ActionResult<IEnumerable<bool>> Post(string str, int id, object o)
         {
             switch (str)
