@@ -106,7 +106,33 @@ namespace REST.Controllers
                         return false;
                     case DeckOfCards d:
                         DeckOfCards deckOfCards = _fscontext.DecksOfCards.Where(x => x.DeckOfCardsID == d.DeckOfCardsID).FirstOrDefault<DeckOfCards>();
+                        List<Card> cardsDatabase = _fscontext.Cards.Where(x => x.DeckOfCards.DeckOfCardsID == d.DeckOfCardsID).ToList();
+                        List<Card> cardsUser = d.Cards;
+                        
+                        if (deckOfCards  != null)
+                        {
+                            deckOfCards.Name = d.Name;
+                            deckOfCards.Date = d.Date;
+                            _fscontext.Update(deckOfCards);
+                            _fscontext.SaveChanges();
 
+                            for (int i=0; i<cardsDatabase.Count; i++)
+                            {
+                                for(int j=0; j<cardsUser.Count; j++)
+                                {
+                                    if (cardsDatabase[i].CardID == cardsUser[j].CardID)
+                                    {
+                                        cardsDatabase[i].TextFront = cardsUser[j].TextFront;
+                                        cardsDatabase[i].TextBack = cardsUser[j].TextBack;
+                                        _fscontext.Update(cardsDatabase[i]);
+                                        _fscontext.SaveChanges();
+                                    }
+                                }
+                            }
+
+
+                            return true;
+                        }
                         return false;
                     default:
                         return false;
