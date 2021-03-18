@@ -25,11 +25,28 @@ namespace REST.Controllers
                         _fscontext.SaveChanges();
                         return true;
                     case DeckOfCards d:
-                        d.Subject = _fscontext.Subjects.Single(x => x.SubjectID == d.Subject.SubjectID);
+                        /*d.Subject = _fscontext.Subjects.Single(x => x.SubjectID == d.Subject.SubjectID);
                         d.User = _fscontext.Users.Single(x => x.UserID == d.User.UserID);
 
                         _fscontext.Add(d);
                         _fscontext.SaveChanges();
+                        return true;*/
+                        d.Subject = _fscontext.Subjects.Single(x => x.SubjectID == d.Subject.SubjectID);
+                        d.User = _fscontext.Users.Single(x => x.UserID == d.User.UserID);
+                        
+                        List<Card> cards = d.Cards;
+
+                        _fscontext.Add(d);
+                        _fscontext.SaveChanges();
+
+                        int LastID = _fscontext.DecksOfCards.Max(x => x.DeckOfCardsID);
+
+                        foreach(Card c in cards)
+                        {
+                            c.DeckOfCards.DeckOfCardsID = LastID;
+                            _fscontext.Add(c);
+                        }
+
                         return true;
                     case Card c:
                         c.DeckOfCards = _fscontext.DecksOfCards.Single(x => x.DeckOfCardsID == c.DeckOfCards.DeckOfCardsID);
@@ -86,6 +103,10 @@ namespace REST.Controllers
                             _fscontext.SaveChanges();
                             return true;
                         }
+                        return false;
+                    case DeckOfCards d:
+                        DeckOfCards deckOfCards = _fscontext.DecksOfCards.Where(x => x.DeckOfCardsID == d.DeckOfCardsID).FirstOrDefault<DeckOfCards>();
+
                         return false;
                     default:
                         return false;

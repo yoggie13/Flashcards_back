@@ -71,7 +71,7 @@ namespace REST.Controllers
         {
             switch (str)
             {
-                case "skupKartica":
+                case "skupkartica":
                     DeckOfCards deckOfCards = JsonConvert.DeserializeObject<DeckOfCards>(o.ToString(), new IsoDateTimeConverter { DateTimeFormat = "dd-MM-yyyy" });
                     return (Ok(_repository.Add(deckOfCards)));
                 case "kartica":
@@ -152,8 +152,9 @@ namespace REST.Controllers
                 case "profil":
                     User user = JsonConvert.DeserializeObject<User>(o.ToString());
                     return (Ok(_repository.Update(user)));
-                case "like":
-                    
+                case "skupkartica":
+                    DeckOfCards deckOfCards = JsonConvert.DeserializeObject<DeckOfCards>(o.ToString(), new IsoDateTimeConverter { DateTimeFormat = "dd-MM-yyyy" });
+                    return (Ok(_repository.Update(deckOfCards)));
                 default:
                     return NotFound(false);
             }
