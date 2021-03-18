@@ -24,6 +24,16 @@ namespace REST.Controllers
                         _fscontext.Add(o);
                         _fscontext.SaveChanges();
                         return true;
+                    case DeckOfCards d:
+
+                        var subject = _fscontext.Subjects.Single(x => x.SubjectID == d.Subject.SubjectID);
+                        var user = _fscontext.Users.Single(x => x.UserID == d.User.UserID);
+                        d.User = user;
+                        d.Subject = subject;
+
+                        _fscontext.Add(d);
+                        _fscontext.SaveChanges();
+                        return true;
                     default:
                         break;
                 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using REST.Model;
 using System;
@@ -71,12 +72,13 @@ namespace REST.Controllers
             switch (str)
             {
                 case "predmeti":
-                    return (Ok(_repository.Add(new Subject { SubjectID = id})));
+                    return (Ok("Je l ovo treba?"));
                 case "kartice":
-                    return (Ok(_repository.Add(new DeckOfCards { DeckOfCardsID = id })));
+                    DeckOfCards deckOfCards = JsonConvert.DeserializeObject<DeckOfCards>(o.ToString(), new IsoDateTimeConverter { DateTimeFormat = "dd-MM-yyyy" });
+                    return (Ok(_repository.Add(deckOfCards)));
                 case "korisnici":
-                    User u = JsonConvert.DeserializeObject<User>(o.ToString());
-                    return (Ok(_repository.Add(u)));
+                    User user = JsonConvert.DeserializeObject<User>(o.ToString());
+                    return (Ok(_repository.Add(user)));
                 default:
                     return NotFound(false);
             }
