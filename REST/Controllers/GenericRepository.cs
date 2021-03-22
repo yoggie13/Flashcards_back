@@ -99,7 +99,7 @@ namespace REST.Controllers
                             .Include(deck => deck.Likes)
                             .Include(deck => deck.Comments)
                             .OrderBy(deck => deck.Likes.Count())
-                            .Skip(page - 1)
+                            .Skip((page - 1) * 8)
                             .Take(8)
                             .ToList();
                     case DeckOfCards d:
@@ -109,7 +109,7 @@ namespace REST.Controllers
                              .Include(deck => deck.Likes)
                              .Include(deck => deck.User)
                              .OrderBy(deck => deck.Likes.Count())
-                            .Skip(page - 1)
+                            .Skip((page - 1)*8)
                             .Take(8)
                             .ToList();
                     default:
