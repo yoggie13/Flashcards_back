@@ -67,6 +67,11 @@ namespace REST.Controllers
                     return NotFound("Greška");
             }
         }
+        [HttpGet("/pretraga/{searchTerm}/{page}")]
+        public ActionResult<IEnumerable<Object>> Search(int page, string searchTerm)
+        {
+            return Ok(_repository.GetByIdWithPage(new DeckOfCards() { Name = searchTerm }, page));
+        }
         [HttpPost("/{str}")]
         public ActionResult<IEnumerable<bool>> Post(string str, object o)
         {
