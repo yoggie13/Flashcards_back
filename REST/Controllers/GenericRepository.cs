@@ -94,22 +94,31 @@ namespace REST.Controllers
                     case Subject s:
                         return _fscontext.DecksOfCards
                             .Where(deck => deck.Subject.SubjectID == s.SubjectID)
-                            .Include(deck => deck.User)
-                            .Include(deck => deck.Subject)
-                            .Include(deck => deck.Likes)
-                            .OrderBy(deck => deck.Likes.Count())
+                             .Select(fullDeck => new DeckOfCards()
+                             {
+                                 DeckOfCardsID = fullDeck.DeckOfCardsID,
+                                 Subject = fullDeck.Subject,
+                                 User = fullDeck.User,
+                                 NumberOfLikes = fullDeck.Likes.Count(),
+                                 LikedByUser = fullDeck.Likes.SingleOrDefault(l => l.User.UserID == 5) != null ? true : false
+                             })
                             .Skip((page - 1) * 8)
                             .Take(8)
                             .ToList();
                     case DeckOfCards d:
-                        return _fscontext.DecksOfCards
-                             .Where(deck => EF.Functions.Like(deck.Name, $"%{d.Name}%"))
-                             .Include(deck => deck.Subject)
-                             .Include(deck => deck.User)
-                             .OrderBy(deck => deck.Likes.Count())
-                            .Skip((page - 1)*8)
-                            .Take(8)
-                            .ToList();
+                       return _fscontext.DecksOfCards
+                              .Where(deck => EF.Functions.Like(deck.Name, $"%{d.Name}%"))
+                             .Select(fullDeck => new DeckOfCards()
+                             {
+                                 DeckOfCardsID = fullDeck.DeckOfCardsID,
+                                 Subject = fullDeck.Subject,
+                                 User = fullDeck.User,
+                                 NumberOfLikes = fullDeck.Likes.Count(),
+                                 LikedByUser = fullDeck.Likes.SingleOrDefault(l => l.User.UserID == 5) != null ? true : false
+                             })
+                             .Skip((page - 1) * 8)
+                             .Take(8)
+                             .ToList();
                     default:
                         return null;
                 }
@@ -225,12 +234,18 @@ namespace REST.Controllers
                     case DeckOfCards d:
                         return _fscontext.DecksOfCards
                             .Where(deck => deck.DeckOfCardsID == d.DeckOfCardsID)
-                            .Include(deck => deck.Cards)
-                            .Include(deck => deck.User)
-                            .Include(deck => deck.Subject)
-                            .Include(deck => deck.Likes)
-                            .Include(deck => deck.Comments)
-                                .ThenInclude(comm => comm.SubComments);
+                             .Select(fullDeck => new DeckOfCards()
+                             {
+                                 DeckOfCardsID = fullDeck.DeckOfCardsID,
+                                 Subject = fullDeck.Subject,
+                                 User = fullDeck.User,
+                                 Cards = fullDeck.Cards,
+                                 NumberOfLikes = fullDeck.Likes.Count(),
+                                 LikedByUser = fullDeck.Likes.SingleOrDefault(l => l.User.UserID == 5) != null ? true : false,
+                             })
+                             .Include(fullDeck => fullDeck.Comments)
+                                .ThenInclude(comm => comm.SubComments)
+                             .FirstOrDefault();
                     default:
                         return null;
 

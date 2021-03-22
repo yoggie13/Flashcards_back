@@ -19,6 +19,8 @@ namespace REST.Model
         public List<Card> Cards { get; set; }
         public List<Comment> Comments { get; set; }
         public List<Like> Likes { get; set; }
+        public int NumberOfLikes { get; set; }
+        public bool LikedByUser { get; set; }
 
 
 
