@@ -97,7 +97,6 @@ namespace REST.Controllers
                             .Include(deck => deck.User)
                             .Include(deck => deck.Subject)
                             .Include(deck => deck.Likes)
-                            .Include(deck => deck.Comments)
                             .OrderBy(deck => deck.Likes.Count())
                             .Skip((page - 1) * 8)
                             .Take(8)
@@ -106,7 +105,6 @@ namespace REST.Controllers
                         return _fscontext.DecksOfCards
                              .Where(deck => EF.Functions.Like(deck.Name, $"%{d.Name}%"))
                              .Include(deck => deck.Subject)
-                             .Include(deck => deck.Likes)
                              .Include(deck => deck.User)
                              .OrderBy(deck => deck.Likes.Count())
                             .Skip((page - 1)*8)
@@ -231,7 +229,8 @@ namespace REST.Controllers
                             .Include(deck => deck.User)
                             .Include(deck => deck.Subject)
                             .Include(deck => deck.Likes)
-                            .Include(deck => deck.Comments);
+                            .Include(deck => deck.Comments)
+                                .ThenInclude(comm => comm.SubComments);
                     default:
                         return null;
 
