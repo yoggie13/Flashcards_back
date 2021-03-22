@@ -27,13 +27,10 @@ namespace REST.Controllers
         }
 
         [HttpGet("/{str}")]
-        public ActionResult<IEnumerable<Object>> Get(string str)
+        public ActionResult<IEnumerable<Object>> Get(string str, object o)
         {
             switch (str)
             {
-                case "dashboard":
-                    //kad se vraca vise razlicitih json-a mozemo ih spojiti preko jsonresult[], pa onda je svaki new jsonresult()
-                    return (Ok("Ovo treba srediti"));
                 default:
                     return NotFound("Nema");
             }
@@ -48,7 +45,7 @@ namespace REST.Controllers
                     return Ok(_repository.GetById(new Subject() { Year = id }));
                
                 case "profil":
-                    return Ok(_repository.GetById(new User() { UserID = id }));
+                    return Ok(_repository.DashboardInfo(new User() { UserID = id }));
                 case "skup-kartica":
                     return Ok(_repository.GetById(new DeckOfCards { DeckOfCardsID = id }));
                 default:

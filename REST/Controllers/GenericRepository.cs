@@ -1,6 +1,8 @@
 ﻿
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using REST.Data;
 using REST.Model;
 using System;
@@ -83,6 +85,26 @@ namespace REST.Controllers
             {
                 return false;
             }
+        }
+
+        internal object DashboardInfo(User user)
+        {
+            List<DeckOfCards> decks = _fscontext.DecksOfCards.Where(d => d.User.UserID == user.UserID).ToList();
+            int br = 0;
+            foreach(DeckOfCards d in decks)
+            {
+                br += (int)_fscontext.Likes.Where(l => l.DeckOfCards.DeckOfCardsID == d.DeckOfCardsID).Distinct().Count();
+            }
+
+            return new JObject(
+            
+                new JProperty("User", new JObject(JObject.FromObject(_fscontext.Users.Where(u => u.UserID == user.UserID).SingleOrDefault()))),
+                new JProperty("Number of comments made", (int)_fscontext.Comments.Where(comm => comm.User.UserID == user.UserID).Distinct().Count()
+                               + (int) _fscontext.SubComments.Where(sub => sub.SubCommentedBy.UserID == user.UserID).Distinct().Count()),
+                new JProperty("Cards created", decks.Count()),
+                new JProperty("Number of likes got", br)
+                
+            );
         }
 
         public object GetByIdWithPage(Object obj, int page)
