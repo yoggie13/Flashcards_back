@@ -46,10 +46,11 @@ namespace REST.Controllers
             {
                 case "godina":
                     return Ok(_repository.GetById(new Subject() { Year = id }));
-                case "predmeti":
-                    return Ok(_repository.GetById(new Subject() { SubjectID = id }));
+               
                 case "profil":
                     return Ok(_repository.GetById(new User() { UserID = id }));
+                case "skup-kartica":
+                    return Ok(_repository.GetById(new DeckOfCards { DeckOfCardsID = id }));
                 default:
                     return NotFound("Nema");
             }
@@ -60,7 +61,7 @@ namespace REST.Controllers
             switch (str)
             {
                 case "predmeti":
-                    return Ok(_repository.GetById(new DeckOfCards() { DeckOfCardsID = secondID }));
+                    return Ok(_repository.GetByIdWithPage(new Subject() { SubjectID = firstID }, secondID));
 
                 default:
                     return NotFound("Greška");

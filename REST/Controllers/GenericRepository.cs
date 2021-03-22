@@ -84,6 +84,33 @@ namespace REST.Controllers
                 return false;
             }
         }
+
+        public object GetByIdWithPage(Object obj, int page)
+        {
+            try
+            {
+                switch (obj)
+                {
+                    case Subject s:
+                        return _fscontext.DecksOfCards
+                            .Where(deck => deck.Subject.SubjectID == s.SubjectID)
+                            .Include(deck => deck.User)
+                            .Include(deck => deck.Subject)
+                            .Include(deck => deck.Likes)
+                            .Include(deck => deck.Comments)
+                            .OrderBy(deck => deck.Likes.Count())
+                            .Skip(page - 1)
+                            .Take(8);
+                    default:
+                        return null;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public bool Update(Object o)
         {
             try
@@ -184,11 +211,6 @@ namespace REST.Controllers
                         return _fscontext.Users
                             .Where(us => us.UserID == u.UserID);
                     case Subject s:
-                        if (s.SubjectID != 0)
-                            return _fscontext.DecksOfCards
-                                .Where(d => d.Subject.SubjectID == s.SubjectID)
-                                .Include(d => d.User);
-                        else
                             return _fscontext.Subjects
                                 .Where(su => su.Year == s.Year);
                     case DeckOfCards d:
@@ -196,7 +218,9 @@ namespace REST.Controllers
                             .Where(deck => deck.DeckOfCardsID == d.DeckOfCardsID)
                             .Include(deck => deck.Cards)
                             .Include(deck => deck.User)
-                            .Include(deck => deck.Subject);
+                            .Include(deck => deck.Subject)
+                            .Include(deck => deck.Likes)
+                            .Include(deck => deck.Comments);
                     default:
                         return null;
 
