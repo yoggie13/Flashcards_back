@@ -39,6 +39,15 @@ namespace REST
             services.AddControllers().AddNewtonsoftJson(options =>
                                       options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddScoped<IGenericRepository, GenericRepository>();
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4200");
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +61,8 @@ namespace REST
             db.Database.EnsureCreated();
 
             app.UseHttpsRedirection();
+
+            app.UseCors();
 
             app.UseRouting();
 

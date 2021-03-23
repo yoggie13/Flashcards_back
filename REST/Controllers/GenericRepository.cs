@@ -120,6 +120,8 @@ namespace REST.Controllers
                              {
                                  DeckOfCardsID = fullDeck.DeckOfCardsID,
                                  Subject = fullDeck.Subject,
+                                 Name = fullDeck.Name,
+                                 Date = fullDeck.Date,                                
                                  User = fullDeck.User,
                                  NumberOfLikes = fullDeck.Likes.Count(),
                                  LikedByUser = fullDeck.Likes.SingleOrDefault(l => l.User.UserID == 5) != null ? true : false
@@ -134,6 +136,8 @@ namespace REST.Controllers
                              {
                                  DeckOfCardsID = fullDeck.DeckOfCardsID,
                                  Subject = fullDeck.Subject,
+                                 Name = fullDeck.Name,
+                                 Date = fullDeck.Date,
                                  User = fullDeck.User,
                                  NumberOfLikes = fullDeck.Likes.Count(),
                                  LikedByUser = fullDeck.Likes.SingleOrDefault(l => l.User.UserID == 5) != null ? true : false
