@@ -111,10 +111,18 @@ namespace REST.Controllers
         {
             try
             {
+                    
                 switch (obj)
                 {
                     case Subject s:
-                        return _fscontext.DecksOfCards
+                        var counters = _fscontext.DecksOfCards
+                            .Where(deck => deck.Subject.SubjectID == s.SubjectID)
+                                  .Count();
+                        var pagess = counters % 8 > 0 ? counters / 8 + 1 : counters / 8;
+                        return
+                            new JObject(
+                                new JProperty(
+                                    "Decks", new JArray(JArray.FromObject(_fscontext.DecksOfCards
                             .Where(deck => deck.Subject.SubjectID == s.SubjectID)
                              .Select(fullDeck => new DeckOfCards()
                              {
@@ -128,23 +136,33 @@ namespace REST.Controllers
                              })
                             .Skip((page - 1) * 8)
                             .Take(8)
-                            .ToList();
+                            .ToList()))),
+                                new JProperty("Number of pages", pagess)
+                            );
                     case DeckOfCards d:
-                       return _fscontext.DecksOfCards
-                              .Where(deck => EF.Functions.Like(deck.Name, $"%{d.Name}%"))
-                             .Select(fullDeck => new DeckOfCards()
-                             {
-                                 DeckOfCardsID = fullDeck.DeckOfCardsID,
-                                 Subject = fullDeck.Subject,
-                                 Name = fullDeck.Name,
-                                 Date = fullDeck.Date,
-                                 User = fullDeck.User,
-                                 NumberOfLikes = fullDeck.Likes.Count(),
-                                 LikedByUser = fullDeck.Likes.SingleOrDefault(l => l.User.UserID == 5) != null ? true : false
-                             })
-                             .Skip((page - 1) * 8)
-                             .Take(8)
-                             .ToList();
+                        var counterd = _fscontext.DecksOfCards
+                                  .Where(deck => EF.Functions.Like(deck.Name, $"%{d.Name}%"))
+                                  .Count();
+                        var pagesd = counterd % 8 > 0 ? counterd / 8 + 1 : counterd / 8;
+                        return new JObject(
+                            new JProperty("Decks", new JArray(
+                                JArray.FromObject(_fscontext.DecksOfCards
+                               .Where(deck => EF.Functions.Like(deck.Name, $"%{d.Name}%"))
+                              .Select(fullDeck => new DeckOfCards()
+                              {
+                                  DeckOfCardsID = fullDeck.DeckOfCardsID,
+                                  Subject = fullDeck.Subject,
+                                  Name = fullDeck.Name,
+                                  Date = fullDeck.Date,
+                                  User = fullDeck.User,
+                                  NumberOfLikes = fullDeck.Likes.Count(),
+                                  LikedByUser = fullDeck.Likes.SingleOrDefault(l => l.User.UserID == 5) != null ? true : false
+                              })
+                              .Skip((page - 1) * 8)
+                              .Take(8)
+                              .ToList()))),
+                              new JProperty("Number of pages", pagesd)
+                              );
                     default:
                         return null;
                 }

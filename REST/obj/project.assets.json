@@ -5499,19 +5499,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\STEFAN PC\\.nuget\\packages\\": {}
+    "C:\\Users\\Ognjen\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\STEFAN PC\\source\\repos\\Flashcards_back\\REST\\REST.csproj",
+      "projectUniqueName": "C:\\Users\\Ognjen\\source\\repos\\OVDE\\REST\\REST.csproj",
       "projectName": "REST",
-      "projectPath": "C:\\Users\\STEFAN PC\\source\\repos\\Flashcards_back\\REST\\REST.csproj",
-      "packagesPath": "C:\\Users\\STEFAN PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\STEFAN PC\\source\\repos\\Flashcards_back\\REST\\obj\\",
+      "projectPath": "C:\\Users\\Ognjen\\source\\repos\\OVDE\\REST\\REST.csproj",
+      "packagesPath": "C:\\Users\\Ognjen\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ognjen\\source\\repos\\OVDE\\REST\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\STEFAN PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ognjen\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5584,7 +5584,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
