@@ -83,15 +83,21 @@ namespace REST.Controllers
                 case "login":
                     User u = new User();
                     u.Username = JObject.FromObject(o).SelectToken("username").Value<string>();
+                    if (string.IsNullOrWhiteSpace(u.Username)) return (NotFound("Username nije unet"));
+
                     u.Password = JObject.FromObject(o).SelectToken("password").Value<string>();
+                    if (string.IsNullOrWhiteSpace(u.Password)) return (NotFound("Password nije unet"));
+
                     return (Ok(_repository.Login(u)));
                 case "korisnik":
                     User user = new User();
                     user.Username = JObject.FromObject(o).SelectToken("username").Value<string>();
                     user.Password = JObject.FromObject(o).SelectToken("password").Value<string>();
-
+                    if (string.IsNullOrWhiteSpace(user.Password)) return (NotFound("Stari password nije unet"));
                     //novi password cuvam u mejlu
                     user.Email = JObject.FromObject(o).SelectToken("newPassword").Value<string>();
+                    if (string.IsNullOrWhiteSpace(user.Password)) return (NotFound("Novi password nije unet"));
+
                     return (Ok(_repository.Update(user)));
                 case "podkomentar":
                     SubComment subComment = JsonConvert.DeserializeObject<SubComment>(o.ToString());
@@ -168,8 +174,14 @@ namespace REST.Controllers
                 case "register":
                     User u = new User();
                     u.Username = JObject.FromObject(o).SelectToken("username").Value<string>();
+                    if (string.IsNullOrWhiteSpace(u.Username)) return (NotFound("Username nije unet"));
+
                     u.Password = JObject.FromObject(o).SelectToken("password").Value<string>();
+                    if (string.IsNullOrWhiteSpace(u.Password)) return (NotFound("Password nije unet"));
+
                     u.Email = JObject.FromObject(o).SelectToken("email").Value<string>();
+                    if (string.IsNullOrWhiteSpace(u.Email)) return (NotFound("Email nije unet"));
+
 
                     return (Ok(_repository.Register(u)));
                 case "skupkartica":
