@@ -80,9 +80,11 @@ namespace REST.Controllers
                 case "kartica":
                     Card card = JsonConvert.DeserializeObject<Card>(o.ToString());
                     return (Ok(_repository.Add(card)));
-               /* case "korisnik":
-                    User user = JsonConvert.DeserializeObject<User>(o.ToString());
-                    return (Ok(_repository.Add(user)));*/
+                case "login":
+                    User u = new User();
+                    u.Username = JObject.FromObject(o).SelectToken("username").Value<string>();
+                    u.Password = JObject.FromObject(o).SelectToken("password").Value<string>();
+                    return (Ok(_repository.Login(u)));
                 case "podkomentar":
                     SubComment subComment = JsonConvert.DeserializeObject<SubComment>(o.ToString());
                     return (Ok(_repository.Add(subComment)));

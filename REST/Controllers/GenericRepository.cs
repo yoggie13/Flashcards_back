@@ -87,6 +87,26 @@ namespace REST.Controllers
             }
         }
 
+        internal object Login(User u)
+        {
+            try
+            {
+                var user = _fscontext.Users
+                    .Where(us => us.Username == u.Username || us.Email == u.Username)
+                    .FirstOrDefault();
+                if (user == null) return "Ne postoji taj username u bazi";
+
+                if (user.Password != u.Password) return "Neispravan password";
+
+                return DashboardInfo(user);
+
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
         internal object DashboardInfo(User user)
         {
             try
