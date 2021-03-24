@@ -236,11 +236,13 @@ namespace REST.Controllers
                 switch (o)
                 {
                     case User u:
-                        User userDatabase = _fscontext.Users.Where(x => x.UserID == u.UserID).FirstOrDefault<User>();
+                        User userDatabase = _fscontext.Users.Where(x => x.Username == u.Username).FirstOrDefault<User>();
 
                         if (userDatabase != null)
                         {
-                            
+                            if (u.Password != userDatabase.Password)
+                                return false;
+                            userDatabase.Password = u.Email;
 
                             _fscontext.Update(userDatabase);
                             _fscontext.SaveChanges();

@@ -85,6 +85,14 @@ namespace REST.Controllers
                     u.Username = JObject.FromObject(o).SelectToken("username").Value<string>();
                     u.Password = JObject.FromObject(o).SelectToken("password").Value<string>();
                     return (Ok(_repository.Login(u)));
+                case "korisnik":
+                    User user = new User();
+                    user.Username = JObject.FromObject(o).SelectToken("username").Value<string>();
+                    user.Password = JObject.FromObject(o).SelectToken("password").Value<string>();
+
+                    //novi password cuvam u mejlu
+                    user.Email = JObject.FromObject(o).SelectToken("newPassword").Value<string>();
+                    return (Ok(_repository.Update(user)));
                 case "podkomentar":
                     SubComment subComment = JsonConvert.DeserializeObject<SubComment>(o.ToString());
                     return (Ok(_repository.Add(subComment)));
