@@ -188,6 +188,7 @@ namespace REST.Controllers
                     .Where(us => us.Email == user.Email).FirstOrDefault();
                 Console.WriteLine(user.Email);
                 if (u == null) return $"Ne postoji {user.Email} u bazi";
+                if (!u.Username.Contains('*')) return "Ovaj user je vec registrovan";
 
                 var name = _fscontext.Users
                     .Where(usname => usname.Username == user.Username).FirstOrDefault();

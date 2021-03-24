@@ -156,8 +156,11 @@ namespace REST.Controllers
                     User user = JsonConvert.DeserializeObject<User>(o.ToString());
                     return (Ok(_repository.Update(user)));
                 case "register":
-                    User u = JsonConvert.DeserializeObject<User>(o.ToString());
+                    User u = new User();
+                    u.Username = JObject.FromObject(o).SelectToken("username").Value<string>();
                     u.Password = JObject.FromObject(o).SelectToken("password").Value<string>();
+                    u.Email = JObject.FromObject(o).SelectToken("email").Value<string>();
+
                     return (Ok(_repository.Register(u)));
                 case "skupkartica":
                     DeckOfCards deckOfCards = JsonConvert.DeserializeObject<DeckOfCards>(o.ToString(), new IsoDateTimeConverter { DateTimeFormat = "dd-MM-yyyy" });
