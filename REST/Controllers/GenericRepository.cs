@@ -186,9 +186,9 @@ namespace REST.Controllers
             {
                 var u = _fscontext.Users
                     .Where(us => us.Email == user.Email).FirstOrDefault();
-                Console.WriteLine(user.Email);
+
                 if (u == null) return $"Ne postoji {user.Email} u bazi";
-                if (!u.Username.Contains('*')) return "Ovaj user je vec registrovan";
+                if (!string.IsNullOrEmpty(u.DateRegistered.ToString())) return "Ovaj user je vec registrovan";
 
                 var name = _fscontext.Users
                     .Where(usname => usname.Username == user.Username).FirstOrDefault();
@@ -196,6 +196,7 @@ namespace REST.Controllers
 
                 u.Username = user.Username;
                 u.Password = user.Password;
+                u.DateRegistered = DateTime.Now;
 
                 _fscontext.Update(u);
                 _fscontext.SaveChanges();
