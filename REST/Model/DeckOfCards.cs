@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,7 +20,9 @@ namespace REST.Model
         public List<Card> Cards { get; set; }
         public List<Comment> Comments { get; set; }
         public List<Like> Likes { get; set; }
+        [NotMapped]
         public int NumberOfLikes { get; set; }
+        [NotMapped]
         public bool LikedByUser { get; set; }
 
 

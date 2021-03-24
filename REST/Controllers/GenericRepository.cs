@@ -89,22 +89,29 @@ namespace REST.Controllers
 
         internal object DashboardInfo(User user)
         {
-            List<DeckOfCards> decks = _fscontext.DecksOfCards.Where(d => d.User.UserID == user.UserID).ToList();
-            int br = 0;
-            foreach(DeckOfCards d in decks)
+            try
             {
-                br += (int)_fscontext.Likes.Where(l => l.DeckOfCards.DeckOfCardsID == d.DeckOfCardsID).Distinct().Count();
-            }
+                List<DeckOfCards> decks = _fscontext.DecksOfCards.Where(d => d.User.UserID == user.UserID).ToList();
+                int br = 0;
+                foreach (DeckOfCards d in decks)
+                {
+                    br += (int)_fscontext.Likes.Where(l => l.DeckOfCards.DeckOfCardsID == d.DeckOfCardsID).Distinct().Count();
+                }
 
-            return new JObject(
-            
-                new JProperty("User", new JObject(JObject.FromObject(_fscontext.Users.Where(u => u.UserID == user.UserID).SingleOrDefault()))),
-                new JProperty("Number of comments made", (int)_fscontext.Comments.Where(comm => comm.User.UserID == user.UserID).Distinct().Count()
-                               + (int) _fscontext.SubComments.Where(sub => sub.SubCommentedBy.UserID == user.UserID).Distinct().Count()),
-                new JProperty("Cards created", decks.Count()),
-                new JProperty("Number of likes got", br)
-                
-            );
+                return new JObject(
+
+                    new JProperty("User", new JObject(JObject.FromObject(_fscontext.Users.Where(u => u.UserID == user.UserID).SingleOrDefault()))),
+                    new JProperty("Number of comments made", (int)_fscontext.Comments.Where(comm => comm.User.UserID == user.UserID).Distinct().Count()
+                                   + (int)_fscontext.SubComments.Where(sub => sub.SubCommentedBy.UserID == user.UserID).Distinct().Count()),
+                    new JProperty("Cards created", decks.Count()),
+                    new JProperty("Number of likes got", br)
+
+                );
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
         public object GetByIdWithPage(Object obj, int page)
@@ -173,6 +180,33 @@ namespace REST.Controllers
             }
         }
 
+        internal object Register(User user)
+        {
+            try
+            {
+                var u = _fscontext.Users
+                    .Where(us => us.Email == user.Email).FirstOrDefault();
+                Console.WriteLine(user.Email);
+                if (u == null) return $"Ne postoji {user.Email} u bazi";
+
+                var name = _fscontext.Users
+                    .Where(usname => usname.Username == user.Username).FirstOrDefault();
+                if (name != null) return "Taj username je već zauzet";
+
+                u.Username = user.Username;
+                u.Password = user.Password;
+
+                _fscontext.Update(u);
+                _fscontext.SaveChanges();
+
+                return DashboardInfo(u);
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
         public bool Update(Object o)
         {
             try
@@ -184,9 +218,7 @@ namespace REST.Controllers
 
                         if (userDatabase != null)
                         {
-                            userDatabase.Username = u.Username;
-                            userDatabase.Email = u.Email;
-                            userDatabase.Role = u.Role;
+                            
 
                             _fscontext.Update(userDatabase);
                             _fscontext.SaveChanges();

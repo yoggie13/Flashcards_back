@@ -80,9 +80,9 @@ namespace REST.Controllers
                 case "kartica":
                     Card card = JsonConvert.DeserializeObject<Card>(o.ToString());
                     return (Ok(_repository.Add(card)));
-                case "korisnik":
+               /* case "korisnik":
                     User user = JsonConvert.DeserializeObject<User>(o.ToString());
-                    return (Ok(_repository.Add(user)));
+                    return (Ok(_repository.Add(user)));*/
                 case "podkomentar":
                     SubComment subComment = JsonConvert.DeserializeObject<SubComment>(o.ToString());
                     return (Ok(_repository.Add(subComment)));
@@ -134,8 +134,8 @@ namespace REST.Controllers
         {
             switch (str)
             {
-                case "predmeti":
-                    return Ok(_repository.Delete(new DeckOfCards() { DeckOfCardsID = secondID }));
+                /*case "predmeti":
+                    return Ok(_repository.Delete(new DeckOfCards() { DeckOfCardsID = secondID }));*/
                 case "like":
                     return Ok(_repository.Delete(new Like()
                     {
@@ -155,6 +155,10 @@ namespace REST.Controllers
                 case "profil":
                     User user = JsonConvert.DeserializeObject<User>(o.ToString());
                     return (Ok(_repository.Update(user)));
+                case "register":
+                    User u = JsonConvert.DeserializeObject<User>(o.ToString());
+                    u.Password = JObject.FromObject(o).SelectToken("password").Value<string>();
+                    return (Ok(_repository.Register(u)));
                 case "skupkartica":
                     DeckOfCards deckOfCards = JsonConvert.DeserializeObject<DeckOfCards>(o.ToString(), new IsoDateTimeConverter { DateTimeFormat = "dd-MM-yyyy" });
                     return (Ok(_repository.Update(deckOfCards)));

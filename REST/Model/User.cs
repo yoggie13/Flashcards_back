@@ -3,20 +3,23 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 namespace REST.Model
 {
+    [DataContract]
     public class User
     {
         [Key]
         public int UserID { get; set; }
         [Required]
+        [DataMember]
         public string Username { get; set; }
         [Required]
-        [JsonIgnore]
         public string Password { get; set; }
         [Required]
+        [DataMember]
         public string Email { get; set; }
         public Role Role { get; set; }
         public List<Like> Likes { get; set; }
