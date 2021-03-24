@@ -13,10 +13,8 @@ namespace REST.Model
     {
         [Key]
         public int UserID { get; set; }
-        [Required]
         [DataMember]
         public string Username { get; set; }
-        [Required]
         public string Password { get; set; }
         [Required]
         [DataMember]
