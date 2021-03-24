@@ -121,10 +121,10 @@ namespace REST.Controllers
                 return new JObject(
 
                     new JProperty("User", new JObject(JObject.FromObject(_fscontext.Users.Where(u => u.UserID == user.UserID).SingleOrDefault()))),
-                    new JProperty("Number of comments made", (int)_fscontext.Comments.Where(comm => comm.User.UserID == user.UserID).Distinct().Count()
+                    new JProperty("Comments_Made", (int)_fscontext.Comments.Where(comm => comm.User.UserID == user.UserID).Distinct().Count()
                                    + (int)_fscontext.SubComments.Where(sub => sub.SubCommentedBy.UserID == user.UserID).Distinct().Count()),
-                    new JProperty("Cards created", decks.Count()),
-                    new JProperty("Number of likes got", br)
+                    new JProperty("Cards_Created", decks.Count()),
+                    new JProperty("Likes_Got", br)
 
                 );
             }
@@ -164,7 +164,7 @@ namespace REST.Controllers
                             .Skip((page - 1) * 8)
                             .Take(8)
                             .ToList()))),
-                                new JProperty("Number of pages", pagess)
+                                new JProperty("Pages", pagess)
                             );
                     case DeckOfCards d:
                         var counterd = _fscontext.DecksOfCards
@@ -188,7 +188,7 @@ namespace REST.Controllers
                               .Skip((page - 1) * 8)
                               .Take(8)
                               .ToList()))),
-                              new JProperty("Number of pages", pagesd)
+                              new JProperty("Pages", pagesd)
                               );
                     default:
                         return null;
