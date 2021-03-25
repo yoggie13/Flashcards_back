@@ -112,33 +112,7 @@ namespace REST.Controllers
                     return NotFound(false);
             }
         }
-        [HttpPost("/{str}/{firstID}/{secondID}")]
-        public ActionResult<IEnumerable<bool>> PostByIDByID(string str, int firstID, int secondID, object o)
-        {
-            switch (str)
-            {
-                case "likee":
-                    Like like = new Like
-                    {
-                        User = new User { UserID = firstID },
-                        DeckOfCards = new DeckOfCards { DeckOfCardsID = secondID }
-                    };
-                    return (Ok(_repository.Add(like)));
-                case "comment":
-                    Comment comment = JsonConvert.DeserializeObject<Comment>(o.ToString());
-                    comment.User = new User
-                    {
-                        UserID = firstID
-                    };
-                    comment.DeckOfCards = new DeckOfCards
-                    {
-                        DeckOfCardsID = secondID
-                    };
-                    return (Ok(_repository.Add(comment)));
-                default:
-                    return NotFound(false);
-            }
-        }
+
         [HttpDelete("/{str}/{id}")]
         public ActionResult<IEnumerable<bool>> Delete(string str, int id)
         {

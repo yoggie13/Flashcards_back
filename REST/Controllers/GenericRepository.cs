@@ -251,7 +251,6 @@ namespace REST.Controllers
                         if (deckOfCards  != null)
                         {
                             deckOfCards.Name = d.Name;
-                            deckOfCards.Date = d.Date;
                             _fscontext.Update(deckOfCards);
                             _fscontext.SaveChanges();
 
@@ -268,7 +267,6 @@ namespace REST.Controllers
                                     }
                                 }
                             }
-
 
                             return true;
                         }
