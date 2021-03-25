@@ -36,9 +36,8 @@ namespace REST.Controllers
                         _fscontext.SaveChanges();
 
                         int lastDeckOfCardsID = _fscontext.DecksOfCards.Max(x => x.DeckOfCardsID);
-                        int 
 
-                        foreach(Card c in cards)
+                        foreach (Card c in cards)
                         {
                             c.DeckOfCards.DeckOfCardsID = lastDeckOfCardsID;
                             _fscontext.Add(c);
@@ -67,7 +66,7 @@ namespace REST.Controllers
                         return true;
                     case SubComment s:
                         s.Comment = _fscontext.Comments.Single(x => x.CommentID == s.Comment.CommentID);
-                        s.SubCommentedBy = _fscontext.Users.Single(x => x.UserID == s.SubCommentedBy.UserID);
+                        s.SubCommentedBy = _fscontext.Users.Single(x => x.Username == s.SubCommentedBy.Username);
 
                         _fscontext.Add(s);
                         _fscontext.SaveChanges();
