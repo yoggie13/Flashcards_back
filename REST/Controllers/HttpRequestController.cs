@@ -102,6 +102,9 @@ namespace REST.Controllers
                 case "podkomentar":
                     SubComment subComment = JsonConvert.DeserializeObject<SubComment>(o.ToString());
                     return (Ok(_repository.Add(subComment)));
+                case "like":
+                    Like like = JsonConvert.DeserializeObject<Like>(o.ToString());
+                    return (Ok(_repository.Add(like)));
                 default:
                     return NotFound(false);
             }
@@ -111,8 +114,7 @@ namespace REST.Controllers
         {
             switch (str)
             {
-                //razmisliti da li saljemo kroz body ili ovako
-                case "like":
+                case "likee":
                     Like like = new Like
                     {
                         User = new User { UserID = firstID },

@@ -51,7 +51,7 @@ namespace REST.Controllers
                         _fscontext.SaveChanges();
                         return true;
                     case Like l:
-                        l.User = _fscontext.Users.Single(x => x.UserID == l.User.UserID);
+                        l.User = _fscontext.Users.Single(x => x.Username == l.User.Username);
                         l.DeckOfCards = _fscontext.DecksOfCards.Single(x => x.DeckOfCardsID == l.DeckOfCards.DeckOfCardsID);
 
                         _fscontext.Add(l);
