@@ -105,6 +105,9 @@ namespace REST.Controllers
                 case "like":
                     Like like = JsonConvert.DeserializeObject<Like>(o.ToString());
                     return (Ok(_repository.Add(like)));
+                case "komentar":
+                    Comment comment = JsonConvert.DeserializeObject<Comment>(o.ToString());
+                    return (Ok(_repository.Add(comment)));
                 default:
                     return NotFound(false);
             }

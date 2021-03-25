@@ -58,7 +58,7 @@ namespace REST.Controllers
                         _fscontext.SaveChanges();
                         return true;
                     case Comment c:
-                        c.User = _fscontext.Users.Single(x => x.UserID == c.User.UserID);
+                        c.User = _fscontext.Users.Single(x => x.Username == c.User.Username);
                         c.DeckOfCards = _fscontext.DecksOfCards.Single(x => x.DeckOfCardsID == c.DeckOfCards.DeckOfCardsID);
 
                         _fscontext.Add(c);
