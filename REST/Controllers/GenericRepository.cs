@@ -27,25 +27,20 @@ namespace REST.Controllers
                         _fscontext.SaveChanges();
                         return true;
                     case DeckOfCards d:
-                        /*d.Subject = _fscontext.Subjects.Single(x => x.SubjectID == d.Subject.SubjectID);
-                        d.User = _fscontext.Users.Single(x => x.UserID == d.User.UserID);
-
-                        _fscontext.Add(d);
-                        _fscontext.SaveChanges();
-                        return true;*/
                         d.Subject = _fscontext.Subjects.Single(x => x.SubjectID == d.Subject.SubjectID);
-                        d.User = _fscontext.Users.Single(x => x.UserID == d.User.UserID);
+                        d.User = _fscontext.Users.Single(x => x.Username == d.User.Username );
                         
                         List<Card> cards = d.Cards;
 
                         _fscontext.Add(d);
                         _fscontext.SaveChanges();
 
-                        int LastID = _fscontext.DecksOfCards.Max(x => x.DeckOfCardsID);
+                        int lastDeckOfCardsID = _fscontext.DecksOfCards.Max(x => x.DeckOfCardsID);
+                        int 
 
                         foreach(Card c in cards)
                         {
-                            c.DeckOfCards.DeckOfCardsID = LastID;
+                            c.DeckOfCards.DeckOfCardsID = lastDeckOfCardsID;
                             _fscontext.Add(c);
                         }
 
