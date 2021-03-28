@@ -142,13 +142,17 @@ namespace REST.Controllers
                         var pagess = counters % 8 > 0 ? counters / 8 + 1 : counters / 8;
                         return
                             new JObject(
+                              
+                                new JProperty("Subject", _fscontext.Subjects
+                                .Where(sub => sub.SubjectID == s.SubjectID)
+                                .FirstOrDefault()
+                                .Name),
                                 new JProperty(
                                     "Decks", new JArray(JArray.FromObject(_fscontext.DecksOfCards
                             .Where(deck => deck.Subject.SubjectID == s.SubjectID)
                              .Select(fullDeck => new DeckOfCards()
                              {
                                  DeckOfCardsID = fullDeck.DeckOfCardsID,
-                                 Subject = fullDeck.Subject,
                                  Name = fullDeck.Name,
                                  Date = fullDeck.Date,                                
                                  User = fullDeck.User,
@@ -159,6 +163,7 @@ namespace REST.Controllers
                             .Take(8)
                             .ToList()))),
                                 new JProperty("Pages", pagess)
+
                             );
                     case DeckOfCards d:
                         var counterd = _fscontext.DecksOfCards
