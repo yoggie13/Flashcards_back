@@ -105,7 +105,7 @@ namespace REST.Controllers
         {
             try
             {
-                List<DeckOfCards> decks = _fscontext.DecksOfCards.Where(d => d.User.UserID == user.UserID).ToList();
+                List<DeckOfCards> decks = _fscontext.DecksOfCards.Where(d => d.User.Username == user.Username).ToList();
                 int br = 0;
                 foreach (DeckOfCards d in decks)
                 {
@@ -114,9 +114,9 @@ namespace REST.Controllers
 
                 return new JObject(
 
-                    new JProperty("User", new JObject(JObject.FromObject(_fscontext.Users.Where(u => u.UserID == user.UserID).SingleOrDefault()))),
-                    new JProperty("Comments_Made", (int)_fscontext.Comments.Where(comm => comm.User.UserID == user.UserID).Distinct().Count()
-                                   + (int)_fscontext.SubComments.Where(sub => sub.SubCommentedBy.UserID == user.UserID).Distinct().Count()),
+                    new JProperty("User", new JObject(JObject.FromObject(_fscontext.Users.Where(u => u.Username == user.Username).SingleOrDefault()))),
+                    new JProperty("Comments_Made", (int)_fscontext.Comments.Where(comm => comm.User.Username == user.Username).Distinct().Count()
+                                   + (int)_fscontext.SubComments.Where(sub => sub.SubCommentedBy.Username == user.Username).Distinct().Count()),
                     new JProperty("Cards_Created", decks.Count()),
                     new JProperty("Likes_Got", br)
 

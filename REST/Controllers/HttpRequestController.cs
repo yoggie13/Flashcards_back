@@ -36,22 +36,27 @@ namespace REST.Controllers
             }
         }
 
-        [HttpGet("/{str}/{id}")]
-        public ActionResult<IEnumerable<Object>> GetByID(string str, int id)
+        [HttpGet("/{str}/{word}")]
+        public ActionResult<IEnumerable<Object>> GetByID(string str, string word)
         {
+            int id = 0;
+            
             switch (str)
             {
                 case "godina":
+                    id = Convert.ToInt32(word);
                     return Ok(_repository.GetById(new Subject() { Year = id }));
                
                 case "profil":
-                    return Ok(_repository.DashboardInfo(new User() { UserID = id }));
+                    return Ok(_repository.DashboardInfo(new User() { Username = word }));
                 case "skup-kartica":
+                    id = Convert.ToInt32(word);
                     return Ok(_repository.GetById(new DeckOfCards { DeckOfCardsID = id }));
                 default:
                     return NotFound("Nema");
             }
         }
+
         [HttpGet("/{str}/{firstID}/{secondID}")]
         public ActionResult<IEnumerable<Object>> GetByIDByID(string str, int firstID, int secondID)
         {
