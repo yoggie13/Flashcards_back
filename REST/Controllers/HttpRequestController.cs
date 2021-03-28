@@ -48,7 +48,6 @@ namespace REST.Controllers
                     case "godina":
                         id = Convert.ToInt32(word);
                         return Ok(_repository.GetById(new Subject() { Year = id }));
-
                     case "profil":
                         return Ok(_repository.DashboardInfo(new User() { Username = word }));
                     case "skup-kartica":

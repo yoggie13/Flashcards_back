@@ -329,7 +329,12 @@ namespace REST.Controllers
                             return _fscontext.Subjects
                                 .Where(su => su.Year == s.Year);
                     case DeckOfCards d:
-                        return _fscontext.DecksOfCards
+                        List<Comment> comm = new List<Comment>();
+                        comm = (List<Comment>)_fscontext.Comments
+                            .Where(c => c.DeckOfCards.DeckOfCardsID == d.DeckOfCardsID)
+                            .Include(c => c.SubComments)
+                            .ToList();
+                        return   _fscontext.DecksOfCards
                             .Where(deck => deck.DeckOfCardsID == d.DeckOfCardsID)
                              .Select(fullDeck => new DeckOfCards()
                              {
@@ -338,10 +343,10 @@ namespace REST.Controllers
                                  User = fullDeck.User,
                                  Cards = fullDeck.Cards,
                                  NumberOfLikes = fullDeck.Likes.Count(),
+                                 Comments = comm,
                                  LikedByUser = fullDeck.Likes.SingleOrDefault(l => l.User.UserID == 5) != null ? true : false,
                              })
-                             .Include(fullDeck => fullDeck.Comments)
-                                .ThenInclude(comm => comm.SubComments)
+                             
                              .FirstOrDefault();
                     default:
                         return null;
