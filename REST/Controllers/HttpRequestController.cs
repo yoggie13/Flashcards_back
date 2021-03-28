@@ -40,20 +40,28 @@ namespace REST.Controllers
         public ActionResult<IEnumerable<Object>> GetByID(string str, string word)
         {
             int id = 0;
-            
-            switch (str)
+            try
             {
-                case "godina":
-                    id = Convert.ToInt32(word);
-                    return Ok(_repository.GetById(new Subject() { Year = id }));
-               
-                case "profil":
-                    return Ok(_repository.DashboardInfo(new User() { Username = word }));
-                case "skup-kartica":
-                    id = Convert.ToInt32(word);
-                    return Ok(_repository.GetById(new DeckOfCards { DeckOfCardsID = id }));
-                default:
-                    return NotFound("Nema");
+
+                switch (str)
+                {
+                    case "godina":
+                        id = Convert.ToInt32(word);
+                        return Ok(_repository.GetById(new Subject() { Year = id }));
+
+                    case "profil":
+                        return Ok(_repository.DashboardInfo(new User() { Username = word }));
+                    case "skup-kartica":
+                        id = Convert.ToInt32(word);
+                        return Ok(_repository.GetById(new DeckOfCards { DeckOfCardsID = id }));
+                    default:
+                        return NotFound("Nema");
+                }
+            }
+            catch (Exception)
+            {
+
+                return NotFound("Nije unet broj");
             }
         }
 
