@@ -339,6 +339,8 @@ namespace REST.Controllers
                              .Select(fullDeck => new DeckOfCards()
                              {
                                  DeckOfCardsID = fullDeck.DeckOfCardsID,
+                                 Name = fullDeck.Name,
+                                 Date = fullDeck.Date,
                                  Subject = fullDeck.Subject,
                                  User = fullDeck.User,
                                  Cards = fullDeck.Cards,

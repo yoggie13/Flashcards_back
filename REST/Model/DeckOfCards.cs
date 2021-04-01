@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace REST.Model
@@ -19,6 +20,7 @@ namespace REST.Model
         public Subject Subject { get; set; }
         public List<Card> Cards { get; set; }
         public List<Comment> Comments { get; set; }
+        [JsonIgnore]
         public List<Like> Likes { get; set; }
         [NotMapped]
         public int NumberOfLikes { get; set; }
