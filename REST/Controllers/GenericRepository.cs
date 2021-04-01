@@ -15,7 +15,7 @@ namespace REST.Controllers
     public class GenericRepository : IGenericRepository
     {
         private readonly FlashcardsContext _fscontext = new FlashcardsContext();
-
+        private static User _user;
         public bool Add(Object o)
         {
             try
@@ -92,6 +92,8 @@ namespace REST.Controllers
 
                 if (user.Password != u.Password) return "Neispravan password";
 
+                _user = user;
+
                 return DashboardInfo(user);
 
             }
@@ -157,7 +159,7 @@ namespace REST.Controllers
                                  Date = fullDeck.Date,                                
                                  User = fullDeck.User,
                                  NumberOfLikes = fullDeck.Likes.Count(),
-                                 LikedByUser = fullDeck.Likes.SingleOrDefault(l => l.User.UserID == 5) != null ? true : false
+                                 LikedByUser = fullDeck.Likes.SingleOrDefault(l => l.User.UserID == _user.UserID) != null ? true : false
                              })
                             .Skip((page - 1) * 8)
                             .Take(8)
@@ -182,7 +184,7 @@ namespace REST.Controllers
                                   Date = fullDeck.Date,
                                   User = fullDeck.User,
                                   NumberOfLikes = fullDeck.Likes.Count(),
-                                  LikedByUser = fullDeck.Likes.SingleOrDefault(l => l.User.UserID == 5) != null ? true : false
+                                  LikedByUser = fullDeck.Likes.SingleOrDefault(l => l.User.UserID == _user.UserID) != null ? true : false
                               })
                               .Skip((page - 1) * 8)
                               .Take(8)
@@ -346,7 +348,7 @@ namespace REST.Controllers
                                  Cards = fullDeck.Cards,
                                  NumberOfLikes = fullDeck.Likes.Count(),
                                  Comments = comm,
-                                 LikedByUser = fullDeck.Likes.SingleOrDefault(l => l.User.UserID == 5) != null ? true : false,
+                                 LikedByUser = fullDeck.Likes.SingleOrDefault(l => l.User.UserID == _user.UserID) != null ? true : false,
                              })
                              
                              .FirstOrDefault();
@@ -355,9 +357,9 @@ namespace REST.Controllers
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return null;
+                return ex.Message;
             }
         }
     }
