@@ -125,8 +125,8 @@ namespace REST.Controllers
                     new JProperty("Comments_Made", (int)_fscontext.Comments.Where(comm => comm.User.Username == user.Username).Distinct().Count()
                                    + (int)_fscontext.SubComments.Where(sub => sub.SubCommentedBy.Username == user.Username).Distinct().Count()),
                     new JProperty("Cards_Created", decks.Count()),
-                    new JProperty("Likes_Got", br)
-
+                    new JProperty("Likes_Got", br),
+                    new JProperty("Latest_decks_of_cards", new JObject(JObject.FromObject(_fscontext.DecksOfCards.OrderBy(x => x.Date).ToList().Last())))
                 );
             }
             catch (Exception ex)

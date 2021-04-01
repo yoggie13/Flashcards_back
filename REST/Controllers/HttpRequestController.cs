@@ -42,7 +42,6 @@ namespace REST.Controllers
             int id = 0;
             try
             {
-
                 switch (str)
                 {
                     case "godina":
