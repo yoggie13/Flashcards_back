@@ -54,6 +54,11 @@ namespace REST.Controllers
                         l.User = _fscontext.Users.Single(x => x.Username == l.User.Username);
                         l.DeckOfCards = _fscontext.DecksOfCards.Single(x => x.DeckOfCardsID == l.DeckOfCards.DeckOfCardsID);
 
+                        Like lajkovao = _fscontext.Likes.Where(x => x.User.Username == l.User.Username && x.DeckOfCards.DeckOfCardsID == l.DeckOfCards.DeckOfCardsID).Cast<Like>().FirstOrDefault();
+
+                        if (lajkovao != null)
+                            return false;
+
                         _fscontext.Add(l);
                         _fscontext.SaveChanges();
                         return true;

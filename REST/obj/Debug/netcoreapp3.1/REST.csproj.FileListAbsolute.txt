@@ -557,3 +557,6 @@ C:\Users\neven\Desktop\Sem2\REST\obj\Debug\netcoreapp3.1\REST.csproj.CopyComplet
 C:\Users\neven\Desktop\Sem2\REST\obj\Debug\netcoreapp3.1\REST.dll
 C:\Users\neven\Desktop\Sem2\REST\obj\Debug\netcoreapp3.1\REST.pdb
 C:\Users\neven\Desktop\Sem2\REST\obj\Debug\netcoreapp3.1\REST.genruntimeconfig.cache
+C:\Users\neven\Desktop\Sem\REST\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\neven\Desktop\Sem\REST\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\neven\Desktop\Sem\REST\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
