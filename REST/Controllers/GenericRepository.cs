@@ -307,6 +307,19 @@ namespace REST.Controllers
                             _fscontext.Remove(card);
                         _fscontext.Remove(d);
                         break;
+                    case Like l:
+                        List<Like> userLikes= _fscontext.Likes
+                                             .Include(x => x.User)
+                                             .Include(x => x.DeckOfCards)
+                                             .Where(x => x.User.UserID == l.User.UserID)
+                                             .ToList();
+                        Like like = userLikes.Where(x => x.DeckOfCards.DeckOfCardsID == l.DeckOfCards.DeckOfCardsID).SingleOrDefault();
+
+                        if (like == null)
+                            return false;
+
+                        _fscontext.Remove(like);
+                        break;
                     default:
                         return false;
                 }

@@ -124,12 +124,11 @@ namespace REST.Controllers
             }
         }
 
-        [HttpDelete("/{str}/{id}")]
+        [HttpDelete("/{str}")]
         public ActionResult<IEnumerable<bool>> Delete(string str, int id)
         {
             switch (str)
             {
-
                 default:
                     return NotFound(false);
             }
