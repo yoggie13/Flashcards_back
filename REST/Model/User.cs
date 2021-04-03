@@ -12,6 +12,7 @@ namespace REST.Model
     public class User
     {
         [Key]
+        [DataMember]
         public int UserID { get; set; }
         [DataMember]
         public string Username { get; set; }
