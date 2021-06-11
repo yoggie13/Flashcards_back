@@ -122,13 +122,13 @@ namespace REST.Controllers
                 return new JObject(
 
                     new JProperty("User", new JObject(JObject.FromObject(_fscontext.Users.Where(u => u.Username == user.Username).SingleOrDefault()))),
-                    new JProperty("Role", new JObject(JObject.FromObject(_fscontext.Users.Where(u => u.Username == user.Username).ElementAt(4)),
+                    new JProperty("Role", new JObject(JObject.FromObject(_fscontext.Users.Where(u => u.Username == user.Username).Select(u => u.Role)))),
                     new JProperty("Comments_Made", (int)_fscontext.Comments.Where(comm => comm.User.Username == user.Username).Distinct().Count(),
                                    + (int)_fscontext.SubComments.Where(sub => sub.SubCommentedBy.Username == user.Username).Distinct().Count()),
                     new JProperty("Cards_Created", decks.Count()),
                     new JProperty("Likes_Got", br),
                     new JProperty("Latest_decks_of_cards", new JObject(JObject.FromObject(_fscontext.DecksOfCards.OrderBy(x => x.Date).ToList().Last())))
-                    )));
+                    );
             }
             catch (Exception ex)
             {
