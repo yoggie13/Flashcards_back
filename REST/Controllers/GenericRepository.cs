@@ -155,7 +155,7 @@ namespace REST.Controllers
 
                 var quiz = readTask.Result;
 
-                return quiz;
+                return JObject.Parse(quiz);
             }
             else return null;
 

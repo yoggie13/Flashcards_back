@@ -478,7 +478,6 @@ C:\Users\STEFAN PC\source\repos\Flashcards_back\REST\bin\Debug\netcoreapp3.1\run
 C:\Users\STEFAN PC\source\repos\Flashcards_back\REST\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\STEFAN PC\source\repos\Flashcards_back\REST\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\STEFAN PC\source\repos\Flashcards_back\REST\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\STEFAN PC\source\repos\Flashcards_back\REST\obj\Debug\netcoreapp3.1\REST.csprojAssemblyReference.cache
 C:\Users\STEFAN PC\source\repos\Flashcards_back\REST\obj\Debug\netcoreapp3.1\REST.AssemblyInfoInputs.cache
 C:\Users\STEFAN PC\source\repos\Flashcards_back\REST\obj\Debug\netcoreapp3.1\REST.AssemblyInfo.cs
 C:\Users\STEFAN PC\source\repos\Flashcards_back\REST\obj\Debug\netcoreapp3.1\REST.csproj.CoreCompileInputs.cache
@@ -692,3 +691,4 @@ C:\Users\neven\Desktop\iteh - sem\REST\obj\Debug\netcoreapp3.1\REST.csproj.CopyC
 C:\Users\neven\Desktop\iteh - sem\REST\obj\Debug\netcoreapp3.1\REST.dll
 C:\Users\neven\Desktop\iteh - sem\REST\obj\Debug\netcoreapp3.1\REST.pdb
 C:\Users\neven\Desktop\iteh - sem\REST\obj\Debug\netcoreapp3.1\REST.genruntimeconfig.cache
+C:\Users\STEFAN PC\source\repos\Flashcards_back\REST\obj\Debug\netcoreapp3.1\REST.csproj.AssemblyReference.cache
