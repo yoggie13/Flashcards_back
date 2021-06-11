@@ -329,8 +329,29 @@ namespace REST.Controllers
                         var cards = _fscontext.Cards
                             .Where(c => c.DeckOfCards.DeckOfCardsID == d.DeckOfCardsID);
 
-                        foreach(Card card in cards)
-                            _fscontext.Remove(card);
+                        List<Comment> comments = new List<Comment>();
+                        comments = (List<Comment>)_fscontext.Comments
+                            .Where(c => c.DeckOfCards.DeckOfCardsID == d.DeckOfCardsID)
+                            .Include(c => c.SubComments)
+                                .ThenInclude(s => s.SubCommentedBy)
+                            .ToList();
+
+                        List<Like> likes = (List<Like>)_fscontext.Likes.Where(l => l.DeckOfCards.DeckOfCardsID == d.DeckOfCardsID).ToList();
+
+                        foreach(Comment c in comments)
+                        {
+                            foreach (SubComment s in c.SubComments)
+                            {
+                                _fscontext.Remove(s);
+                            }
+                            _fscontext.Remove(c);
+                        }
+
+                        foreach (Like l in likes)
+                            _fscontext.Remove(l);
+
+                        foreach (Card c in cards)
+                            _fscontext.Remove(c);
                         _fscontext.Remove(d);
                         break;
                     case Like l:
