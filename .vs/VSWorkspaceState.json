@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\REST",
+    "\\REST\\Controllers"
   ],
-  "SelectedNode": "\\Flashcards.sln",
+  "SelectedNode": "\\REST\\Controllers\\GenericRepository.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -380,8 +380,10 @@ namespace REST.Controllers
                         comm = (List<Comment>)_fscontext.Comments
                             .Where(c => c.DeckOfCards.DeckOfCardsID == d.DeckOfCardsID)
                             .Include(c => c.SubComments)
+                                .ThenInclude(s => s.SubCommentedBy)
+                            .Include(c => c.User)
                             .ToList();
-                        return   _fscontext.DecksOfCards
+                        return _fscontext.DecksOfCards
                             .Where(deck => deck.DeckOfCardsID == d.DeckOfCardsID)
                              .Select(fullDeck => new DeckOfCards()
                              {
