@@ -102,11 +102,11 @@ namespace REST.Controllers
                     return (Ok(_repository.Login(u)));
                 case "korisnik":
                     User user = new User();
-                    user.Username = JObject.FromObject(o).SelectToken("username").Value<string>();
-                    user.Password = JObject.FromObject(o).SelectToken("password").Value<string>();
+                    user.Username = JObject.FromObject(o).SelectToken("Username").Value<string>();
+                    user.Password = JObject.FromObject(o).SelectToken("Password").Value<string>();
                     if (string.IsNullOrWhiteSpace(user.Password)) return (NotFound("Stari password nije unet"));
                     //novi password cuvam u mejlu
-                    user.Email = JObject.FromObject(o).SelectToken("newPassword").Value<string>();
+                    user.Email = JObject.FromObject(o).SelectToken("Email").Value<string>();
                     if (string.IsNullOrWhiteSpace(user.Password)) return (NotFound("Novi password nije unet"));
 
                     return (Ok(_repository.Update(user)));
