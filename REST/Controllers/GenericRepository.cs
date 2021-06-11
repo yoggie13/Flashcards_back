@@ -122,7 +122,7 @@ namespace REST.Controllers
                 return new JObject(
 
                     new JProperty("User", new JObject(JObject.FromObject(_fscontext.Users.Where(u => u.Username == user.Username).SingleOrDefault()))),
-                    new JProperty("Role", new JObject(JObject.FromObject(_fscontext.Users.Where(u => u.Username == user.Username).Select(u => u.Role)))),
+                    new JProperty("Role", user.Role),
                     new JProperty("Comments_Made", (int)_fscontext.Comments.Where(comm => comm.User.Username == user.Username).Distinct().Count(),
                                    + (int)_fscontext.SubComments.Where(sub => sub.SubCommentedBy.Username == user.Username).Distinct().Count()),
                     new JProperty("Cards_Created", decks.Count()),
