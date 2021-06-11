@@ -124,11 +124,13 @@ namespace REST.Controllers
             }
         }
 
-        [HttpDelete("/{str}")]
+        [HttpDelete("/{str}/{id}")]
         public ActionResult<IEnumerable<bool>> Delete(string str, int id)
         {
             switch (str)
             {
+                case "kartice":
+                    return Ok(_repository.Delete(new DeckOfCards { DeckOfCardsID = id }));
                 default:
                     return NotFound(false);
             }
