@@ -8,6 +8,7 @@ using REST.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace REST.Controllers
@@ -126,7 +127,8 @@ namespace REST.Controllers
                                    + (int)_fscontext.SubComments.Where(sub => sub.SubCommentedBy.Username == user.Username).Distinct().Count()),
                     new JProperty("Cards_Created", decks.Count()),
                     new JProperty("Likes_Got", br),
-                    new JProperty("Latest_decks_of_cards", new JObject(JObject.FromObject(_fscontext.DecksOfCards.OrderBy(x => x.Date).ToList().Last())))
+                    new JProperty("Latest_decks_of_cards", new JObject(JObject.FromObject(_fscontext.DecksOfCards.OrderBy(x => x.Date).ToList().Last()))),
+                    new JProperty("quiz", getQuiz())
                     );
             }
             catch (Exception ex)
@@ -134,6 +136,31 @@ namespace REST.Controllers
                 return ex.Message;
             }
         }
+        public object getQuiz()
+        {
+            var client = new HttpClient();
+
+            client.BaseAddress = new Uri("https://opentdb.com/");
+
+            var responseTask = client.GetAsync("api.php?amount=1&category=18");
+
+            responseTask.Wait();
+            var result = responseTask.Result;
+
+            if (result.IsSuccessStatusCode)
+            {
+
+                var readTask = result.Content.ReadAsStringAsync();
+                readTask.Wait();
+
+                var quiz = readTask.Result;
+
+                return quiz;
+            }
+            else return null;
+
+        }
+
 
         public object GetByIdWithPage(Object obj, int page)
         {
