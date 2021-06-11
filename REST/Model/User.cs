@@ -20,6 +20,7 @@ namespace REST.Model
         [Required]
         [DataMember]
         public string Email { get; set; }
+        [DataMember]
         public Role Role { get; set; }
         public List<Like> Likes { get; set; }
         public List<Comment> Comments { get; set; }
