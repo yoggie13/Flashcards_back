@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\neven\\Desktop\\Sem3\\REST\\REST.csproj": {}
+    "C:\\Users\\neven\\Desktop\\iteh - sem\\REST\\REST.csproj": {}
   },
   "projects": {
-    "C:\\Users\\neven\\Desktop\\Sem3\\REST\\REST.csproj": {
+    "C:\\Users\\neven\\Desktop\\iteh - sem\\REST\\REST.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\neven\\Desktop\\Sem3\\REST\\REST.csproj",
+        "projectUniqueName": "C:\\Users\\neven\\Desktop\\iteh - sem\\REST\\REST.csproj",
         "projectName": "REST",
-        "projectPath": "C:\\Users\\neven\\Desktop\\Sem3\\REST\\REST.csproj",
+        "projectPath": "C:\\Users\\neven\\Desktop\\iteh - sem\\REST\\REST.csproj",
         "packagesPath": "C:\\Users\\neven\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\neven\\Desktop\\Sem3\\REST\\obj\\",
+        "outputPath": "C:\\Users\\neven\\Desktop\\iteh - sem\\REST\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
